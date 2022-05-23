@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="form.css">
+    <title>Form</title>
+</head>
+<body>
+    
+    
+    <style>
+
+        body{
+        margin:0;
+        padding: 0;
+        font-family: BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+        background: #0d1117;  
+        
+    }
+    
+     
+
+       section{
+           margin: 0;
+           padding: 150px;
+           text-align: center;
+
+       }
+
+       form{
+           margin: 0 auto;
+           width: 25%;
+           height: 500px;
+           border-radius: 8px;
+           background:#161b22;
+           font-family: BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+
+       }
+       form input{
+           display: block;
+           width: 80%;
+           background: #0d1117;
+           border:1px solid  rgb(87, 87, 87);
+           border-radius: 4px;
+           height: 32px;
+           margin:0 auto;
+           color: white;
+           font-size: 13px;
+           margin-bottom: 20px;
+       }
+      
+       ::placeholder {
+         color: rgb(179, 179, 179);
+         font-size: 13px;
+         text-align: left;
+         margin-left: 20px;
+          }
+
+        #text{
+            color :white;
+        }
+
+       textarea{
+           background:#0d1117;
+           margin:10px 0px 10px 0px;
+           color: rgb(255, 255, 255);
+           font-size: 14px;
+           border-radius: 4px;
+
+
+       }
+
+       .btn-enviar{
+           width: 20%;
+           height: 40px;
+           border-radius: 4px;
+           color: white ;
+           border:none;
+           background: green;
+           font-size: 16px;
+           margin: 10px 0px 10px 50px ;
+       }
+
+       .btn-enviar:hover{
+           border:2px solid green;
+           background: none;
+           
+       }
+
+       form p{
+           text-align: left;
+           margin-left: 40px;
+           margin-bottom: 8px;
+           margin-top: 20px;
+           font-size: 18px;
+           color:white;
+       }
+
+       h3{ 
+           color: rgb(233, 233, 233);
+           text-align: center;
+        }
+
+        .container{
+
+            margin: 0;
+
+
+    
+        }
+           
+    
+    </style>
+    
+      <img src="" alt="">
+
+
+      <section>
+          <div>   
+              <h3>Contacto</h3>
+            <div class="container">
+              <form action="/contactar/" method="POST">{% csrf_token %}
+                 <p>Asunto</p>
+                 <input type="text" name="txtAsunto">
+
+                 <p>Email</p>
+                 <input type="email" name="txtEmail">
+
+                 <textarea name="textmsg" id="text" cols="40" rows="10"  placeholder="Escribe tu email aqui" ></textarea>
+                 <input class="btn-enviar" type="submit" value="Enviar">
+
+
+
+              </form>
+            </div>
+          </div>
+      </section>
+
+
+
+
+</body>
+</html>
