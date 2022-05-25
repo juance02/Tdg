@@ -5,12 +5,14 @@
 	<meta charset="UTF-8">
 	<title></title>
 	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="{% static 'inicio.css' %}">
-
+    <link rel="stylesheet" href="{% static 'Login.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+   
 </head>
 <body>
 
-    <form class="formulario">
+ 
+<form class="formulario">
 
     <h1>Iniciar Sesion</h1>
      <div class="contenedor">
@@ -30,13 +32,15 @@
          </div>
          <input type="submit" value="Iniciar Sesion" class="button">
          <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-         <p>¿No tienes una cuenta? <a class="link" href="http://localhost:53095/Registrar/">Registrate </a></p>
+         <p>¿No tienes una cuenta? <a class="link" href="{% url 'Registrar' %}">Registrate </a></p>
      </div>
     </form>
     {% block content %}
 
 
     {% endblock %}
+
+
 </body>
 </html>
 
