@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {#Cargamos la librería#}
+{%load bootstrap4%}
+{#CSS Bootstrap#}
+{%bootstrap_css%}
+{#Archivos#}
+{%load static%}
+{%if messages%}
+<ul class="messages list-group mb-3">
+  {%for message in messages%}
+  <li{%if message.tags%)class="{{message.tags}}list-group-item
+list-group-item-primary"{%endif%}>{{message}}</li>
+  {%endfor%}+
+</ul>
+{%endif%}
+</head>
+<body>
+    {#JSyjQuery Bootstrap#}
+{%bootstrap_javascript jquery='full'%}
+<div align="left"class="btn_crear mb-3">
+  <a href="crear" type="button" class="btn btn-primary"> Crear </a>
+</div>
+ <!-- listando los categoria en una tabla HTML -->
+<table class="table table-striped table-hover">
+     <thead>
+       <tr>
+          <th width="35%">Codigo de categoria</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+    <!-- Recorremos los objetosoregistros que tenemos en nuestra
+    tabla'categoria'ylos listamos -->
+    {%for categoria in object_list%}
+    <tr>
+      <td>{{categoria.idcategorias}}</td>
+      <td>{{categoria.nombre}}</td>
+      <td>{{categoria.descripcion}}</td>
+      <td>
+       <!-- -- Usaremos un formulario que realizará la tarea de
+    eliminar un registroopostre desde la misma tabla HTML -->
+    <form method="POST"
+    action="eliminar/{{categoria.idcategorias}}">
+      {%csrf_token%}
+      <div class="btn-group">
+    <!-- Creamos3botones que son ver,EditaryEliminar,nos
+sirven para gestionar nuestros registrosopostres -->
+<ahref="detalle/{{categoria.idcategorias}}"title="Ver"
+type="button"class="btn btn-success">Ver </a>
+<atitle="Editar"href="editar/{{categoria.idcategorias}}"
+type="button"class="btn btn-primary">Editar </a>
+<button class="btn btn-danger"onclick="return
+eliminar();"type="submit">
+  Eliminar
+</button>
+</div>
+</table>
+</form>
+</td>
+</tr>
+{%endfor%)
+</tbody>
+</table>
+<script type="text/javascript">
+  function eliminar(){
+     varx=confirm("Eliminar Producto?");
+     if(x)
+       return true;
+     else
+     return false;
+}
+</script>
+(#JSyjQuery Bootstrap#}
+</body{%bootstrap_javascript jquery='full'%}>
+
+</body>
+</html>

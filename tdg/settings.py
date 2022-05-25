@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'principal.apps.PrincipalConfig',
+    'bootstrap4',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +83,7 @@ DATABASES = {
         'NAME': 'tdg',
         'USER': 'root',
         'PASSWORD' : 'Admin1234*',
-        'PORT' : '3308',
+        'PORT' : '3306',
         'HOST': '127.0.0.1'
     }
 }
