@@ -2,6 +2,10 @@ body{
     margin: 0 auto;
     
 }
+.main-head{
+    background: green;
+    
+}
 
 .container{
     padding: 16px;

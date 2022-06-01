@@ -9,8 +9,7 @@ from principal.views import *
 
 
 urlpatterns = [
-    path('', views.Inicio, name="Inicio"),
-    path('Form/', views.Form, name="Form"),
+    path('', views.Inicio, name="Form"),
     path('plantilla/', views.plantilla, name="plantilla"),
     path('contactar/', views.contactar,name="contactar"),
     #path('', include('django.contrib.auth.urls')),

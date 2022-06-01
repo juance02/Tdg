@@ -21,6 +21,16 @@
 				<li><a href="{% url 'register' %}">Registrarse</a></li>
 				<li><a href="{% url 'login' %}">Inicia Sesion</a></li>
 				{% endif %}
+				<form action="#" method="post">
+					<select id="agileinfo-nav_search"name="agileinfo_search"class="border"required>
+						 <option value>Categorias</option>
+						 <option value="Verduras">Verduras</option>
+						 <option value="Lacteos">Lacteos</option>
+						 <option value="Carnes">Carnes</option>
+						 <option value="Frutas">Frutas</option>
+						 <option value="Granos">Granos</option>
+					</select>
+				  </form>
 				
 				
 			</ul>
@@ -34,32 +44,133 @@
   </div>
   {% endfor %}
   {% endif %}
-	<div class="main">
+  
+<div class="main">
 		
 		<nav class="second-nav">
-			<a class="feed" href="{% url 'plantilla' %}">Inicio</a>
 			{% if request.user.is_authenticated %}
 			<a class="feed" href="{% url 'perfil' %}">Tu Perfil</a>
-			<a class="profile" href="{% url 'agregar_Perfil' %}">Crea tu Perfil</a>
+			<a class="feed" href="{% url 'plantilla' %}">Inicio</a>
+			<a class="profile" href="{% url 'agregar_Perfil' %}">Modifica tu Perfil</a>
 			<a class="new" href="{% url 'agregar_producto' %}">Agrega un Producto</a>
 			{% endif %}
 			
 		</nav>
+
+{% block content %}		
+
 		
-		{% block content %}
+		
+</div>
 
+<section>
+		
+	<div class="containerl">
+	   {% for post in product %}
+	   <div class="card">
+		   <img src="" alt="">
+		   <h2 class="username"><a href="{% url 'perfil' post.user.username %}">{{ post.user.username }}</a></h2>
+		   <h3 class="title" >Nombre</h3> 
+		   <div class="post">{{ post.descripcion }}</div>
+		   <p>Precio</p>
+		   <a href="">Ver</a>
 
-		{% endblock content %}
+	   </div>
+	   {% endfor %}
 
+	   <div class="card">
+		   <img src="" alt="">
+		   <h3 class="title" >Nombre</h3>
+		   <p>descripcion</p>
+		   <p>Cantidad</p>
+		   <p>Precio</p>
+		   <p>Categoria</p>
+		   <a href="">Ver</a>
 
+	   </div>
 
+	   <div class="card">
+		   <img src="" alt="">
+		   <h3 class="title" >Nombre</h3>
+		   <p>descripcion</p>
+		   <p>Cantidad</p>
+		   <p>Precio</p>
+		   <p>Categoria</p>
+		   <a href="">Ver</a>
+
+	   </div>
+	   <div class="card">
+		   <img src="" alt="">
+		   <h3 class="title" >Nombre</h3>
+		   <p>descripcion</p>
+		   <p>Cantidad</p>
+		   <p>Precio</p>
+		   <p>Categoria</p>
+		   <a href="">Ver</a>
+
+	   </div>
+	   
 	</div>
+	
+</section>
+
+
+
+<section>
+	<div class="containerl">
+	   <div class="card">
+		   <img src="{% static 'papas.jpg' %}" alt="">
+		   <h3 class="title" >Nombre</h3>
+		   <p>descripcion</p>
+		   <p>Cantidad</p>
+		   <p>Precio</p>
+		   <p>Categoria</p>
+		   <a href="">Ver</a>
+
+	   </div>
+
+	   <div class="card">
+		   <img src="" alt="">
+		   <h3 class="title" >Nombre</h3>
+		   <p>descripcion</p>
+		   <p>Cantidad</p>
+		   <p>Precio</p>
+		   <p>Categoria</p>
+		   <a href="">Ver</a>
+
+	   </div>
+
+	   <div class="card">
+		   <img src="" alt="">
+		   <h3 class="title" >Nombre</h3>
+		   <p>descripcion</p>
+		   <p>Cantidad</p>
+		   <p>Precio</p>
+		   <p>Categoria</p>
+		   <a href="">Ver</a>
+
+	   </div>
+	   <div class="card">
+		   <img src="" alt="">
+		   <h3 class="title" >Nombre</h3>
+		   <p>descripcion</p>
+		   <p>Cantidad</p>
+		   <p>Precio</p>
+		   <p>Categoria</p>
+		   <a href="">Ver</a>
+
+	   </div>
+	</div>
+   
+</section>
+
 
 	<footer>
 		<div class="row">
 			
 		</div>
 	</footer>
+{% endblock content %}
 
 </body>
 </html>

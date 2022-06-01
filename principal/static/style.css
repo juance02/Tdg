@@ -1,6 +1,7 @@
 body{
-	background: #99f8ad;
+	background: #ffffff;
 	font-size: 62.5%;
+  margin: 0 ;
 	font-family: 'Varela Round', Helvetica, Arial, serif;
 }
 /* Global Styles*/
@@ -15,6 +16,9 @@ h5{
 	font-size: 1rem;
 	margin-bottom: 0;
 
+}
+h1{
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 p{
@@ -39,7 +43,14 @@ img{
 /* Nav bar */
 .main-head{
 	color: rgb(0, 0, 0);
-    background-color: green
+    background: rgb(84, 230, 121);
+    box-shadow: 1px 2px 8px rgb(150, 150, 150)
+
+}
+.main{
+  color: rgb(0, 0, 0);
+  background: rgb(84, 230, 121);
+  box-shadow: 1px 2px 8px rgb(150, 150, 150)
 }
 
 nav.main{
@@ -174,6 +185,61 @@ time {
 	margin-top: -10px;
 	font-size: 1.3rem;
 }
+
+
+section{
+  padding: 50px;
+  text-align: center;
+  margin-bottom: 40px;
+ 
+
+}
+
+.containerl{
+  display:inline-flex;
+}
+
+.card{
+  width: 350px;
+  height: 300px;
+  border-radius: 8px;
+  margin-left: 20px;
+  box-shadow: 1px 1px 8px rgb(150, 150, 150);
+ 
+}
+.card img{
+  margin-top: 20px;
+  border-radius: 4px;
+  width: 80%;
+  box-shadow: 1px 1px 8px rgb(150, 150, 150);
+  height: 150px;
+}
+.card p{
+  text-align: left;
+  margin-left: 20px;
+}
+
+.card a{
+  width: 100px;
+  padding: 10px 40px 10px 40px ;
+  background:green;
+  border-radius: 4px;
+  color:white;
+}
+
+.card a:hover{
+  width: 100px;
+  padding: 10px 40px 10px 40px ;
+  background:none;
+  border: 2px solid green;
+  border-radius: 4px;
+  color:rgb(24, 24, 24);
+}
+
+
+
+
+
 
 /* Followers / Following / Post */
 .follow{

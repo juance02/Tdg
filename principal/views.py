@@ -41,13 +41,7 @@ from django.contrib.auth.decorators import  login_required
 # Create your views here.
 
 def Inicio(request):
-    return render(request, "index.html")
-
-def  Form(request):
-     #productoo =Producto.objects.all()
-
-     #context = { 'productoo': productoo}
-     return render(request,"Form.html")
+    return render(request, "Form.html")
 
 def  plantilla(request):
      product = producto.objects.all()
@@ -171,7 +165,7 @@ def agregar_personas(request):
     if request.method == 'POST':
         formulario = PersonasForm(data=request.POST)
         if formulario.is_valid():
-            Personas = formulario.save(commit=False)
+            Personas = formulario.save()
             Personas.user = current_user
             Personas.save()
             messages.success(request, 'Formulario de contacto cargado')
