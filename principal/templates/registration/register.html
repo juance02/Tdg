@@ -1,0 +1,49 @@
+{% extends 'Form.html' %}
+
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=h, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<br><br>
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+        <div class="card">
+            
+            <div class="card-body">
+                <h2>Registrarse</h2>
+                <hr>
+                <form action="{% url 'register' %}" method="POST" >
+            
+                {% csrf_token %}
+                {{ form | crispy }}
+                
+                <input type="reset" value="Cancelar" class="btn btn-primary" >
+                 &nbsp;
+                <input type="submit" value="Guardar" class="btn btn-primary" >
+            </div>
+        </form>
+        {{mensaje}}
+    </div>
+</div>
+</div>
+</div>   
+
+
+</body>
+</html>
+
+
+{% endblock %}
+
+</body>
+</html>

@@ -5,8 +5,10 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+from email.policy import default
+from django.utils import timezone
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Cabeza(models.Model):
     idcabeza = models.AutoField(primary_key=True)
@@ -18,7 +20,7 @@ class Cabeza(models.Model):
 
 class Calificaciones(models.Model):
     idcalificaciones = models.AutoField(primary_key=True)
-    perfil_idperfil = models.ForeignKey('Perfil', models.DO_NOTHING, db_column='perfil_idperfil')
+    #perfil_idperfil = models.ForeignKey('Perfil', models.DO_NOTHING, db_column='perfil_idperfil')
 
     class Meta:
         managed = False
@@ -29,12 +31,8 @@ class Categoria(models.Model):
     idcategoria = models.AutoField(db_column='idCategoria', primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(max_length=45)
     descripcion = models.TextField()
-    imageulr = models.TextField(blank=True, null=True)
+    imageulr = models.ImageField(blank=True, null=True)
     categoriaid = models.IntegerField(blank=True, null=True)
-    
-    def __str__(self):
-        txt = "{0} {1}  {2} {3}"
-        return txt.format(self.idcategoria,self.nombre,self.descripcion,self.imageulr)
 
     class Meta:
         managed = False
@@ -43,7 +41,7 @@ class Categoria(models.Model):
 
 class Comentarios(models.Model):
     idcomentarios = models.AutoField(primary_key=True)
-    perfil_idperfil = models.ForeignKey('Perfil', models.DO_NOTHING, db_column='perfil_idperfil')
+    #perfil_idperfil = models.ForeignKey('Perfil', models.DO_NOTHING, db_column='perfil_idperfil')
 
     class Meta:
         managed = False
@@ -73,10 +71,6 @@ class Departamentos(models.Model):
     iddepartamentos = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=45)
 
-    def __str__(self):
-        txt = "{0} {1}"
-        return txt.format(self.iddepartamentos,self.nombre)
-
     class Meta:
         managed = False
         db_table = 'departamentos'
@@ -95,10 +89,6 @@ class Kardex(models.Model):
     idcardex = models.AutoField(primary_key=True)
     cantidad = models.CharField(max_length=45)
 
-    def __str__(self):
-        txt = "{0} {1} "
-        return txt.format(self.idcardex,self.cantidad)
-
     class Meta:
         managed = False
         db_table = 'kardex'
@@ -110,23 +100,10 @@ class Municipios(models.Model):
     municipiosid = models.IntegerField(blank=True, null=True)
     departamentos_iddepartamentos = models.ForeignKey(Departamentos, models.DO_NOTHING, db_column='departamentos_iddepartamentos')
 
-    def __str__(self):
-        txt = "{0} {1} {3} "
-        return txt.format(self.idmunicipios,self.nombre,self.departamentos_iddepartamentos)
-
     class Meta:
         managed = False
         db_table = 'municipios'
         unique_together = (('idmunicipios', 'departamentos_iddepartamentos'),)
-
-
-class Perfil(models.Model):
-    idperfil = models.AutoField(primary_key=True)
-    descripcion = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'perfil'
 
 
 class Personas(models.Model):
@@ -142,38 +119,16 @@ class Personas(models.Model):
     numero_identificacion = models.BigIntegerField()
     fecha_de_expedicion = models.DateField()
     edad = models.IntegerField()
-    personasid = models.IntegerField(blank=True, null=True)
+    #personasid = models.IntegerField(blank=True, null=True)
     tipo_persona_idtipo_persona = models.ForeignKey('TipoPersona', models.DO_NOTHING, db_column='Tipo_Persona_idTipo_Persona')  # Field name made lowercase.
     departamentos_iddepartamentos = models.ForeignKey(Departamentos, models.DO_NOTHING, db_column='departamentos_iddepartamentos')
-    perfil_idperfil = models.ForeignKey(Perfil, models.DO_NOTHING, db_column='perfil_idperfil')
+    ##perfil_idperfil = models.ForeignKey('Perfil', models.DO_NOTHING, db_column='perfil_idperfil')
     cotizacion_idcotizacion = models.ForeignKey(Cotizacion, models.DO_NOTHING, db_column='cotizacion_idcotizacion')
     idtipo_de_documento_fk = models.ForeignKey('TipoDeDocumento', models.DO_NOTHING, db_column='idTipo_de_documento_fk', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'personas'
-
-
-class Producto(models.Model):
-    idproducto = models.AutoField(db_column='idProducto', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(max_length=45, blank=True, null=True)
-    descripcion = models.CharField(max_length=45)
-    precio = models.FloatField(blank=True, null=True)
-    productoid = models.IntegerField(blank=True, null=True)
-    imagenurl = models.TextField(db_column='imagenUrl')  # Field name made lowercase.
-    categoria_idcategoria = models.ForeignKey(Categoria, models.DO_NOTHING, db_column='Categoria_idCategoria')  # Field name made lowercase.
-    reserva_idreserva = models.ForeignKey('Reserva', models.DO_NOTHING, db_column='reserva_idreserva')
-    kardex_idcardex = models.ForeignKey(Kardex, models.DO_NOTHING, db_column='kardex_idcardex')
-    cotizacion_idcotizacion = models.ForeignKey(Cotizacion, models.DO_NOTHING, db_column='cotizacion_idcotizacion')
-
-    def __str__(self):
-        txt = "{0} {1} {2} {3} {5} {6} {8} "
-        return txt.format(self.idproducto,self.nombre,self.descripcion,self.precio,
-        self.imagenurl,self.categoria_idcategoria,self.Kardex_idcardex)
-
-    class Meta:
-        managed = False
-        db_table = 'producto'
 
 
 class Reserva(models.Model):
@@ -200,10 +155,6 @@ class Subcategoria(models.Model):
     idsubcategoria = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=45)
     categoria_idcategoria = models.ForeignKey(Categoria, models.DO_NOTHING, db_column='Categoria_idCategoria')  # Field name made lowercase.
-    
-    def __str__(self):
-        txt = "{0} {1} {2}"
-        return txt.format(self.idsubcategoria,self.nombre,self.categoria_idcategoria)
 
     class Meta:
         managed = False
@@ -211,12 +162,8 @@ class Subcategoria(models.Model):
 
 
 class TipoDeDocumento(models.Model):
-    idtipo_de_documento = models.IntegerField(db_column='idTipo_de_documento', primary_key=True)  # Field name made lowercase.
+    idtipo_de_documento = models.IntegerField(primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(max_length=45, blank=True, null=True)
-
-    def __str__(self):
-        txt = "{0} {1}"
-        return txt.format(self.idtipo_de_documento,self.nombre)
 
     class Meta:
         managed = False
@@ -227,10 +174,6 @@ class TipoPersona(models.Model):
     idtipo_persona = models.AutoField(db_column='idTipo_Persona', primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(db_column='Nombre', max_length=45)  # Field name made lowercase.
 
-    def __str__(self):
-        txt = "{0} {1}"
-        return txt.format(self.idtipo_persona,self.nombre)
-
     class Meta:
         managed = False
         db_table = 'tipo_persona'
@@ -238,23 +181,32 @@ class TipoPersona(models.Model):
 
 class UbicacionProducto(models.Model):
     idubicacion_producto = models.AutoField(db_column='idUbicacion_producto', primary_key=True)  # Field name made lowercase.
-    producto_idproducto = models.ForeignKey(Producto, models.DO_NOTHING, db_column='Producto_idProducto')  # Field name made lowercase.
+   #producto_idproducto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='Producto_idProducto')  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'ubicacion_producto'
 
+class perfil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image =models.ImageField(default='perfil.jfif')
+    descripcion = models.TextField()
 
-class User(models.Model):
-    username = models.CharField(max_length=16)
-    email = models.CharField(max_length=255, blank=True, null=True)
-    password = models.CharField(max_length=32)
-    create_time = models.DateTimeField(blank=True, null=True)
+    def  __str__(self):
+         return f'Perfil de {self.user.username}'
 
-    def __str__(self):
-        txt = "{0} {1} {2} "
-        return txt.format(self.username,self.email,self.password)
+
+class producto(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product')
+    nombre = models.CharField(max_length=50)
+    precio = models.FloatField()  # Field name made lowercase.
+    imagen = models.ImageField()  # Field name made lowercase.
+    timestamp = models.DateTimeField(default=timezone.now)
+    descripcion = models.TextField()
+    
 
     class Meta:
-        managed = False
-        db_table = 'user'
+        ordering = ['-timestamp']
+
+    def  __str__(self):
+         return f'{self.user.username}: {self.descripcion}'

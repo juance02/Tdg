@@ -35,7 +35,7 @@ input[type="password"]{
     border: none;
     
 }
-.input-contenedor{
+.form-group{
     margin-bottom: 15px;
     border: 1px solid #aaa;
     box-shadow: 2px 4px 3px #504f4f;

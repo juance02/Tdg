@@ -32,16 +32,24 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'principal.apps.PrincipalConfig',
+    'django.contrib.staticfiles',
+    'crispy_forms',
     'bootstrap4',
     'widget_tweaks',
+    'django.contrib.humanize',
+    'colorfield',
 ]
+
+X_FRAME_OPTIONS='SAMEORIGIN' 
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,10 +88,10 @@ WSGI_APPLICATION = 'tdg.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tdg',
+        'NAME': 'tierra_de_grandes',
         'USER': 'root',
         'PASSWORD' : 'Admin1234*',
-        'PORT' : '3306',
+        'PORT' : '3308',
         'HOST': '127.0.0.1'
     }
 }
@@ -124,6 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+LOGIN_REDIRECT_URL='plantilla'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -137,3 +146,16 @@ EMAIL_HOST_PASSWORD = 'Felipevalencia'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+LOGIN_URL = 'login'
+
+
+
+

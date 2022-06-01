@@ -104,4 +104,27 @@ nav{
 a{
     color:green;
 }
+
+.admin {
+    height: 50px;
+    width: 50px;
+    margin-right: 100px;
+    margin-top:auto
+}
+
+
+
+.img-fluid {
+    max-width: 50%;
+    height: auto;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.portfolio-box{
+    height: 500px;
+    width: 500x;
+}
+
+
     

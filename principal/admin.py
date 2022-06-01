@@ -8,19 +8,21 @@ from principal.models import Departamentos
 from principal.models import Entradas
 from principal.models import Kardex
 from principal.models import Municipios
-from principal.models import Perfil
+from principal.models import perfil
 from principal.models import Personas
-from principal.models import Producto
 from principal.models import Reserva
 from principal.models import Salidas
 from principal.models import Subcategoria
+from principal.models import UbicacionProducto
 from principal.models import TipoDeDocumento
 from principal.models import TipoPersona
-from principal.models import User
-from principal.models import UbicacionProducto
+from principal.models import producto
+#from principal.models import User
+#from principal.models import UbicacionProducto
 
 
 # Register your models here.
+
 admin.site.register (Cabeza)
 admin.site.register(Calificaciones)
 admin.site.register(Categoria)
@@ -31,13 +33,13 @@ admin.site.register(Departamentos)
 admin.site.register(Entradas)
 admin.site.register(Kardex)
 admin.site.register(Municipios)
-admin.site.register(Perfil)
+admin.site.register(perfil)
 admin.site.register(Personas)
-admin.site.register(Producto)
+admin.site.register(producto)
 admin.site.register(Reserva)
 admin.site.register(Salidas)
 admin.site.register(Subcategoria)
 admin.site.register(UbicacionProducto)
 admin.site.register(TipoDeDocumento)
 admin.site.register(TipoPersona)
-admin.site.register(User)
+#admin.site.register(User)

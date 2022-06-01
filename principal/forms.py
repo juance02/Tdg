@@ -1,39 +1,40 @@
 from dataclasses import fields
+import email
+from email.mime import image
+from pyexpat import model
 from tkinter import Widget
 from django import forms
-from .models import Producto
+from .models import producto
+
+from django.contrib.auth.models import User
+#from principal.models import  producto 
+from principal.models import *
 
 
-from principal.models import Personas
-
-
-#class personas1(forms.ModelForm):
- #   class Meta:
-  #      model = Personas
-   #     fields ={
-     #       'nombres',
-    #        'apellidos'
-      #      'telefono'
-       #     'telefono_celular'
-        #    'correo_principal'
-         #   'correo_secundario'
-          #  'numero_identificacion'
-           #  widgets = {'fecha_expedicion': forms.DateInput(attrs={'type': 'date'})}
-        #}
-       
 
 
 class ProductoForm(forms.ModelForm):
-    class  meta:
-        model = Producto
-        fields = {
-            'nombre',
-            'descripcion'
-            'precio'
-            ' categoria_idcategoria'
-        }
-class personas1(forms.ModelForm):
+    #nombre = forms.CharField()
+    #precio = forms.FloatField()
+    #imagen = forms.ImageField()
+    #descripcion = forms.CharField(label='', widget=forms.Textarea(attrs={}))
+    
+
+    class  Meta:
+        model = producto
+        fields = ['nombre', 'precio', 'imagen', 'descripcion']
+
+
+
+class PerfilForm(forms.ModelForm):
+     class Meta:
+        model = perfil
+        fields = ['image', 'descripcion']
+
+
+class PersonasForm(forms.ModelForm):
     class Meta:
-         model = Personas
-         fields ='__all__'
-         widgets = {'fecha_expedicion': forms.DateInput(attrs={'type': 'date'})}
+        model = Personas
+        fields = '__all__'
+             
+        

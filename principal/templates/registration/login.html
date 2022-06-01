@@ -1,0 +1,51 @@
+{% extends 'Form.html' %}
+
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=h, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<br><br>
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+        <div class="card">
+            
+            <div class="card-body">
+                <h2>Perfil</h2>
+                <hr>
+                <form action="{% url 'login' %}" method="POST" enctype="multipart/form-data">
+            
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="d-felx justify-content-end">
+                <input type="reset" value="Cancelar" class="btn btn-secondary">
+                 &nbsp;
+                <button type="submit" id="submit">Iniciar</button>
+                <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+                <p>¿No tienes una cuenta? <a class="link" href="{% url 'register' %}">Registrate </a></p>
+            </div>
+        </form>
+        
+    </div>
+</div>
+</div>
+</div>   
+
+
+</body>
+</html>
+
+
+{% endblock %}
+
+</body>
+</html>

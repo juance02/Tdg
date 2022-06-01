@@ -1,32 +1,59 @@
-from django.http import HttpRequest
-from django.shortcuts import render
+from ast import Return
+from email import message
+from multiprocessing import context
+from multiprocessing.dummy import current_process
+from webbrowser import get
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages 
+from http.client import REQUEST_TIMEOUT
+#from itertools import product
+from urllib.request import Request
+from django.urls import reverse
+#from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import send_mail
 from django.conf import settings
-from .forms import  ProductoForm
-from django.views.generic import ListView, DetailView 
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+#from principal.models import Producto
+#from principal.models import Perfil
+#from principal.models import Producto
+from .forms import *
+from django.contrib.auth.models import  User
+from django.contrib.auth.decorators import  login_required
+
+#from django.views.generic import ListView, DetailView 
+#from django.views.generic.edit import CreateView, UpdateView, DeleteView
 #importo el modelo de la base de datos de models.py
-from .models import *
+#from .models import *
 # Habilitamos el uso de mensajes en Django
-from django.contrib import messages 
+
  
 # Habilitamos los mensajes para class-based views 
-from django.contrib.messages.views import SuccessMessageMixin 
+#from django.contrib.messages.views import SuccessMessageMixin 
  
 # Habilitamos los formularios en Django
-from django import forms
+#from django import forms
 
 
 
-from principal.forms import personas1
-
+#from principal.forms import personas1
+#from principal.forms import  Userform, ProductoForm 
 # Create your views here.
 
 def Inicio(request):
     return render(request, "index.html")
 
 def  Form(request):
+     #productoo =Producto.objects.all()
+
+     #context = { 'productoo': productoo}
      return render(request,"Form.html")
+
+def  plantilla(request):
+     product = producto.objects.all()
+
+     context = { 'product': product}
+     return render(request,"plantillas.html", context)
 
 def contactar(request):
     if request.method == "POST":
@@ -35,95 +62,130 @@ def contactar(request):
         email_desde = settings.EMAIL_HOST_USER
         email_para = ["didiervalenciarodriguez@gmail.com"]
         send_mail(asunto,descripcion,email_desde,email_para,  fail_silently=False)
-        return render(request,"contactoExitoso.html")
-    return render(request,"Form.html")
-
-
-def CrearProducto(request):
-    if request.method == "POST":
-        form = ProductoForm(request.POST)
+     #   return render(request,"contactoExitoso.html")
+    #return render(request,"Form.html")
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-             form.save() 
-             return redirect("index.html")
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user) 
+            messages.success(request, f'Usuario {username} creado')         
+            return redirect('plantilla')
+            
     else:
-        form = ProductoForm()
-    return render (request, "CrearProducto.html",{'form':form})
+        form = UserCreationForm()
+
+    return render(request, 'registration/register.html', {"form": form} )
+
+@login_required
+def agregar_Producto(request):
+    current_user = get_object_or_404(User, pk=request.user.pk)
+
+    if request.method == 'POST':
+        formulario = ProductoForm(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            producto = formulario.save(commit=False)
+            producto.user = current_user
+            producto.save()
+            messages.success(request, 'producto cargado')
+            return redirect ('plantilla')
+
+    else:
+        formulario = ProductoForm()
+
+    return render(request, 'app/producto/agregarproducto.html', {'formulario' : formulario})
+@login_required
+def listar_productos(request):
+    productos = producto.objects.all()
+    data ={
+        'productos': productos
+    }
+    return render(request, 'app/producto/listar.html', data)
+@login_required
+def modificar_producto(request,pk):
+    
+    Producto = get_object_or_404(producto, pk=pk)
+
+    data = {
+        'form': ProductoForm(instance=Producto)
+    }
+    if request.method == 'POST':
+        formulario = ProductoForm(data=request.POST, instance=Producto, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="listar_productos")
+        data["form"] = formulario    
+    return render(request, 'app/producto/modificar.html', data)
+
+def eliminar_producto(request, pk):
+    Producto = get_object_or_404(producto, pk=pk)
+    Producto.delete()
+    return redirect(to="listar_productos")
+
+
+def agregar_Perfil(request):
+    current_user = get_object_or_404(User, pk=request.user.pk)
+
+    if request.method == 'POST':
+        formulario = PerfilForm(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            perfil = formulario.save(commit=False)
+            perfil.user = current_user
+            perfil.save()
+            messages.success(request, 'guardado el perfil')
+            return redirect('plantilla')
+            
+
+    else:
+        formulario = PerfilForm()
+
+    return render(request, 'app/perfil/crearPerfil.html', {'formulario' : formulario})
+    
 
 
 
-def Login(request):
-    return render(request,"Login.html")
-
-def Registrar(request):
-    return render(request,"Registrar.html")  
-
-
-def Perfil(request):
-    return render(request, "Perfil.html")
 
 def Categoria(request):
     return render(request, "Categoria.html")
 
 
+def perfil(request, username=None):
 
-class personasview(HttpRequest):
+    current_user = request.user
+    if username and username !=current_user.username:
+        user = User.objects.get(username=username)
+        product = user.product.all()
+
+    else:
+        product = current_user.product.all()
+        user = current_user
+    return render(request, 'app/perfil/perfil.html', {'user':user, 'product':product})
+
+def agregar_personas(request):
+    current_user = get_object_or_404(User, pk=request.user.pk)
+
+    if request.method == 'POST':
+        formulario = PersonasForm(data=request.POST)
+        if formulario.is_valid():
+            Personas = formulario.save(commit=False)
+            Personas.user = current_user
+            Personas.save()
+            messages.success(request, 'Formulario de contacto cargado')
+            return redirect ('perfil')
+
+    else:
+        formulario = PersonasForm()
+
+    return render(request, 'app/personas/personas.html', {'formulario' : formulario})
+
      
-     def index(request):
-       Personas = personas1 ()  
-       return render(request, "Registrar.html", {"form":Personas})
+  
 
 
-
-     def procesar_formulario(request):
-         Personas = personas1(request.POST)
-
-         if Personas.is_valid():
-             Personas.save()
-             Personas = personas1()
-
-         return render(request, "Registrar.html", {"form":Personas, "mensaje": 'ok'})  
-
-         
-          
-def VistaProducto(request):
-   return render(request, "VistaProducto.html")
-
-
-
-class ListadoCategoria(ListView):
-    model = Categoria
-    
-    
-class CategoriaCrear(SuccessMessageMixin, CreateView):
-    model =Categoria
-    form = Categoria
-    fields = "__all__"
-    success_message ='Categoria creada correctamente'
-     
-    def get_success_url(self):        
-        return reverse('leer') # Redireccionamos a la vista principal 'leer'
-
-class CategoriaDetalle (DetailView):
-    model =Categoria
-
-class  CategoriaActualizar(SuccessMessageMixin,UpdateView):
-    model =  Categoria
-    form = Categoria
-    fields = "__all__" # Le decimos a Django que muestre todos los campos de la tabla 'postres' de nuestra Base de Datos 
-    success_message = 'Categoria Actualizado Correctamente !' # Mostramos este Mensaje luego de Editar un Postre 
-
-    def get_success_url(self):               
-        return reverse('leer') # Redireccionamos a la vista principal 'leer'
-class CategoriaEliminar(SuccessMessageMixin, DeleteView): 
-    model = Categoria 
-    form = Categoria
-    fields = "__all__"     
- 
-    # Redireccionamos a la página principal luego de eliminar un registro o postre
-    def get_success_url(self): 
-        success_message = 'Categoria Eliminado Correctamente !' # Mostramos este Mensaje luego de Editar un Postre 
-        messages.success (self.request, (success_message))       
-        return reverse('leer') # Redireccionamos a la vista principal 'leer'
  
    
 

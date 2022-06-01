@@ -6,11 +6,14 @@
   {% bootstrap_css %} 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initia
+  l-scale=1.0">
   <link rel="stylesheet" href="{% static 'index.css' %}">
+  
   <title>Tierra de Grandes</title>
 </head>
 <body>
+  <img src="2.jpg" alt="">
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Tierra de Grandes</a>
@@ -20,38 +23,143 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'Login' %}">Registrar</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Registrar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'Login' %}">Iniciar sesion</a>
+            <a class="nav-link" href="{% url 'login' %}">Iniciar sesion</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-             Categoria
-            </a>
-            <ul class="nav-menu"> 
-              <li><a class="activate" href="#">Home</li>
-              <li><a href="#">Verduras</a></i>
-              <li><a href="#">Frutas  </a></li>
-              <li><a href="#">Granos  </a></li>
-              <li><a href="#">Lacteos </a></li>
-              <li><a href="#">Carnes  </a></li>
-          </ul>
-          </li>
-         
-        </ul>
+          
+                    
+                      <form action="#" method="post">
+                        <select id="agileinfo-nav_search"name="agileinfo_search"class="border"required>
+                             <option value>Categorias</option>
+                             <option value="Verduras">Verduras</option>
+                             <option value="Lacteos">Lacteos</option>
+                             <option value="Carnes">Carnes</option>
+                             <option value="Frutas">Frutas</option>
+                             <option value="Granos">Granos</option>
+                        </select>
+                      </form>
+                    </div>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
       </div>
     </div>
+    
   </nav>
 
-   
- 
 
+  <div class="contenedor" >
+    <div id="portfolio">
+      <div class="container-fluid p-0">
+          <div class="row g-0">
+              <div class="prod1">
+                  <a class="portfolio-box" href="{% static 'fruit.jpg' %}" title="Project Name">
+                      <img class="img-fluid" src="{% static 'fruit.jpg' %}" alt="..." />
+                      <div class="portfolio-box-caption">
+                          <div class="project-category text-white-50">Category</div>
+                          <div class="project-name">Project Name</div>
+                      </div>
+                  </a>
+              </div>
+              <div class="prod2">
+                  <a class="portfolio-box" href="{% static 'tomates.jpg' %}" title="Project Name">
+                      <img class="img-fluid" src="{% static 'tomates.jpg' %}" alt="..." />
+                      <div class="portfolio-box-caption">
+                          <div class="project-category text-white-50">Category</div>
+                          <div class="project-name">Project Name</div>
+                      </div>
+                  </a>
+              </div>
+              <div class="prod3">
+                  <a class="portfolio-box" href="{% static 'vegetables.jpg' %}" title="Project Name">
+                      <img class="img-fluid" src="{% static 'vegetables' %}" alt="..." />
+                      <div class="portfolio-box-caption">
+                          <div class="project-category text-white-50">Category</div>
+                          <div class="project-name">Project Name</div>
+                      </div>
+                  </a>
+
+              </div>
+              <div class="prod4">
+                  <a class="portfolio-box" href="{% static 'appetit.jpg' %}"  title =" <br> <b>  Escuchar musica </b>   <p><hr> En mis tiempos libres<br> escucho musica para relajar mi mente  ">
+                      <img class="img-fluid" src="{% static 'appetit.jpg' %} " alt="">
+                      <div class="portfolio-box-caption">
+                          <div class="project-category text-white-50">musica</div>
+                          <div class="project-name">Escuchar musica</div>
+                      </div>
+                  </a>
+              </div>
+              <div class="prod5">
+                  <a class="portfolio-box" href="{% static 'papas.jpg' %}" title="Project Name">
+                      <img class="img-fluid" src="{% static 'papas.jpg' %}" alt="">
+                      <div class="portfolio-box-caption">
+                          <div class="project-category text-white-50">Category</div>
+                          <div class="project-name">Project Name</div>
+                      </div>
+                  </a>
+              </div>
+              <div class="prod6">
+                  <a class="portfolio-box" href="{% static 'mango.jpg' %} title="Jugar videos juegos ">
+                      <img class="img-fluid" src="{% static 'mango.jpg' %} width=" alt="">
+                      <div class="portfolio-box-caption p-3">
+                          <div class="project-category text-white-50">Category</div>
+                          <div class="project-name">Project Name</div>
+                      </div>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Call to action-->
+  <section class="page-section bg-dark text-white">
+      <div class="container px-4 px-lg-5 text-center">
+          <h2 class="mb-4">Visita mi Perfil</h2>
+          <a class="btn btn-light btn-xl" href="https://www.facebook.com/juanpablo.ceronquinayas.3/">click</a>
+      </div>
+  </section>
+  <!-- Contact-->
+  <section class="page-section" id="contact">
+      <div class="container px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-lg-8 col-xl-6 text-center">
+                  <h2 class="mt-0">contacto</h2>
+                  <hr class="divider" />
+                  <p class="text-muted mb-5">si tienes quejas o reclamos de o alguna no dudes en llamarnos </p>
+              </div>
+          </div>
+          </div>
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-lg-4 text-center mb-5 mb-lg-0">
+                  <i class="bi-phone fs-2 mb-3 text-muted"></i>
+                  <div>+57 3215969324</div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- Footer-->
+  <footer class="bg-light py-5">
+      <div class="container px-4 px-lg-5"><div class="small text-center text-muted"> &copy; 2022 - juan</div></div>
+  </footer>
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SimpleLightbox plugin JS-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+  <!-- Core theme JS-->
+  <script src="js/scripts.js"></script>
   
+  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+</html>
+
+
+
+
+  </div>
+
+   
 
 
 </body>

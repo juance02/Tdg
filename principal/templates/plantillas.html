@@ -1,0 +1,23 @@
+{% extends 'Form.html' %}
+{% block content %}
+{% load humanize %}
+
+{% for post in product %}
+<article>
+    <div class="container-article">
+        <img src="{{ post.user.perfil.image.url }}">
+        <div>
+            <h2 class="username"><a href="{% url 'perfil' post.user.username %}">{{ post.user.username }}</a></h2>
+            <i class="clock"></i>
+            <img  src="{{ post.imagen }}">
+            <time data-time="#">{{ post.timestamp| naturaltime }}</time>
+            <div class="post">{{ post.precio| intcomma }}</div>
+            <div class="post">{{ post.descripcion }}</div>
+            <a class="boton" type="button" href="{% url 'listar_productos' %}">ver</a>
+        </div>
+    </div>
+</article>
+{% endfor %}
+
+
+{% endblock %}
