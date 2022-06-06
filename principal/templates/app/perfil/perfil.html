@@ -1,5 +1,5 @@
 {% extends 'plantillas.html' %}
-{% load static %}
+
 
 {% block content %}
 {% load crispy_forms_tags %}
@@ -10,7 +10,9 @@
 <div class="profile">
 	<img src="{{ user.perfil.image.url }}">
 	<h2>@{{ user.username }}</h2>
-	<button><a class="follow-button" href="{% url 'agregar_personas' %}">contacto</a></button>
+	
+	<p>¿Quieres Vender? <a class="link" href="{% url 'agregar_personas' %}"><h2>Ingresa</h2></a></p>
+	
 </div>
 
 
@@ -31,10 +33,16 @@
 </div>
     <div>
      <h2>Descripcion</h2>
-	 <p>{{ user.product.descripcion.count }}</p>
-	</div>	
+	 <p>{{ user.descripcion }}</p>
+	</div>
+	
 
+	
+	
+	
+    
 
 
 {{ block.super }}
+<button><a class="follow-button" href="{ url 'editar_Producto' p.pk }">Edita tu Producto</a></button>
 {% endblock %}

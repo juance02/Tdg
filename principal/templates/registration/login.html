@@ -22,7 +22,7 @@
     <meta name="viewport" content="width=h, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'Login.css' %}">
   
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
     
@@ -32,16 +32,16 @@
         <div class="card">
             
             <div class="card-body">
-                <h2>Perfil</h2>
+                <h2>Inicia Sesion</h2>
                 <hr>
                 <form action="{% url 'login' %}" method="POST" enctype="multipart/form-data">
             
                 {% csrf_token %}
                 {{ form | crispy }}
                 <div class="d-felx justify-content-end">
-                <input type="reset" value="Cancelar" class="btn btn-secondary">
+                <a class="btn btn-primary" href="{% url 'Form' %}">Cancelar</a>
                  &nbsp;
-                <button type="submit" id="submit">Iniciar</button>
+                <button type="submit" id="submit" class="btn btn-secondary">Iniciar</button>
                 <p>Al registrarte, aceptas nuestras Condiciones de uso   y Política de privacidad.</p>
                 <p>¿No tienes una cuenta? <a class="link" href="{% url 'register' %}">Registrate </a></p>
             </div>

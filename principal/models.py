@@ -5,6 +5,7 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+from distutils.command import upload
 from email.policy import default
 from django.utils import timezone
 from django.db import models
@@ -50,6 +51,7 @@ class Comentarios(models.Model):
 
 class Cotizacion(models.Model):
     idcotizacion = models.AutoField(primary_key=True)
+    cotizacion = models.CharField(max_length=100)
     cuerpo_idcuerpo = models.ForeignKey('Cuerpo', models.DO_NOTHING, db_column='cuerpo_idcuerpo')
     cabeza_idcabeza = models.ForeignKey(Cabeza, models.DO_NOTHING, db_column='cabeza_idcabeza')
     kardex_idcardex = models.ForeignKey('Kardex', models.DO_NOTHING, db_column='kardex_idcardex')
@@ -58,9 +60,12 @@ class Cotizacion(models.Model):
         managed = False
         db_table = 'cotizacion'
 
+    def  __str__(self):
+         return f'{self.cotizacion}'
+
 
 class Cuerpo(models.Model):
-    idcuerpo = models.IntegerField(primary_key=True)
+    idcuerpo = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
@@ -74,6 +79,11 @@ class Departamentos(models.Model):
     class Meta:
         managed = False
         db_table = 'departamentos'
+
+    def  __str__(self):
+        txt = "{0}"
+        return txt.format(self.nombre)
+
 
 
 class Entradas(models.Model):
@@ -95,41 +105,23 @@ class Kardex(models.Model):
 
 
 class Municipios(models.Model):
-    idmunicipios = models.IntegerField(db_column='idMunicipios', primary_key=True)  # Field name made lowercase.
+    idmunicipios = models.AutoField(primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(max_length=45)
-    municipiosid = models.IntegerField(blank=True, null=True)
+    #municipiosid = models.IntegerField(blank=True, null=True)
     departamentos_iddepartamentos = models.ForeignKey(Departamentos, models.DO_NOTHING, db_column='departamentos_iddepartamentos')
 
     class Meta:
         managed = False
         db_table = 'municipios'
         unique_together = (('idmunicipios', 'departamentos_iddepartamentos'),)
+    
+    def  __str__(self):
+         return f'{self.nombre}'
 
 
-class Personas(models.Model):
-    id_personas = models.AutoField(primary_key=True)
-    nombres = models.CharField(max_length=45)
-    apellidos = models.CharField(max_length=45)
-    telefono = models.BigIntegerField(blank=True, null=True)
-    telefono_celular = models.BigIntegerField()
-    correo_principal = models.CharField(db_column='Correo_principal', max_length=45)  # Field name made lowercase.
-    correo_secundario = models.CharField(db_column='Correo_secundario', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    lugar_residencia = models.CharField(max_length=45, blank=True, null=True)
-    codigo_postal = models.CharField(max_length=45, blank=True, null=True)
-    numero_identificacion = models.BigIntegerField()
-    fecha_de_expedicion = models.DateField()
-    edad = models.IntegerField()
-    #personasid = models.IntegerField(blank=True, null=True)
-    tipo_persona_idtipo_persona = models.ForeignKey('TipoPersona', models.DO_NOTHING, db_column='Tipo_Persona_idTipo_Persona')  # Field name made lowercase.
-    departamentos_iddepartamentos = models.ForeignKey(Departamentos, models.DO_NOTHING, db_column='departamentos_iddepartamentos')
-    ##perfil_idperfil = models.ForeignKey('Perfil', models.DO_NOTHING, db_column='perfil_idperfil')
-    cotizacion_idcotizacion = models.ForeignKey(Cotizacion, models.DO_NOTHING, db_column='cotizacion_idcotizacion')
-    idtipo_de_documento_fk = models.ForeignKey('TipoDeDocumento', models.DO_NOTHING, db_column='idTipo_de_documento_fk', blank=True, null=True)  # Field name made lowercase.
 
-    class Meta:
-        managed = False
-        db_table = 'personas'
 
+   
 
 class Reserva(models.Model):
     idreserva = models.AutoField(primary_key=True)
@@ -162,12 +154,15 @@ class Subcategoria(models.Model):
 
 
 class TipoDeDocumento(models.Model):
-    idtipo_de_documento = models.IntegerField(primary_key=True)  # Field name made lowercase.
+    idtipo_de_documento = models.AutoField(primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'tipo_de_documento'
+    
+    def  __str__(self):
+         return f'{self.nombre}'
 
 
 class TipoPersona(models.Model):
@@ -177,6 +172,9 @@ class TipoPersona(models.Model):
     class Meta:
         managed = False
         db_table = 'tipo_persona'
+    
+    def  __str__(self):
+         return f'{self.nombre}'
 
 
 class UbicacionProducto(models.Model):
@@ -200,7 +198,7 @@ class producto(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product')
     nombre = models.CharField(max_length=50)
     precio = models.FloatField()  # Field name made lowercase.
-    imagen = models.ImageField()  # Field name made lowercase.
+    image = models.ImageField(upload_to="productos/",null=True,blank=True)  # Field name made lowercase.
     timestamp = models.DateTimeField(default=timezone.now)
     descripcion = models.TextField()
     
@@ -210,3 +208,47 @@ class producto(models.Model):
 
     def  __str__(self):
          return f'{self.user.username}: {self.descripcion}'
+
+class Personas(models.Model):
+    id_personas = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='contact1')
+    nombres = models.CharField(max_length=45)
+    apellidos = models.CharField(max_length=45)
+    telefono = models.BigIntegerField(blank=True, null=True)
+    telefono_celular = models.BigIntegerField()
+    correo_principal = models.CharField(db_column='Correo_principal', max_length=45)  # Field name made lowercase.
+    correo_secundario = models.CharField(db_column='Correo_secundario', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    lugar_residencia = models.CharField(max_length=45, blank=True, null=True)
+    codigo_postal = models.CharField(max_length=45, blank=True, null=True)
+    numero_identificacion = models.BigIntegerField()
+    fecha_de_expedicion = models.DateField()
+    edad = models.IntegerField()
+    #personasid = models.IntegerField(blank=True, null=True)
+    tipo_persona_idtipo_persona = models.ForeignKey('TipoPersona', models.DO_NOTHING, db_column='Tipo_Persona_idTipo_Persona')  # Field name made lowercase.
+    departamentos_iddepartamentos = models.ForeignKey(Departamentos, models.DO_NOTHING, db_column='departamentos_iddepartamentos')
+    ##perfil_idperfil = models.ForeignKey('Perfil', models.DO_NOTHING, db_column='perfil_idperfil')
+    cotizacion_idcotizacion = models.ForeignKey(Cotizacion, models.DO_NOTHING, db_column='cotizacion_idcotizacion')
+    idtipo_de_documento_fk = models.ForeignKey('TipoDeDocumento', models.DO_NOTHING, db_column='idTipo_de_documento_fk', blank=True, null=True)  # Field name made lowercase.
+    
+
+    class Meta:
+        managed = False
+        db_table = 'personas'
+
+    def  __str__(self):
+         return f'{self.nombres}'
+
+
+class contacto (models.Model):
+    #formper = models.ForeignKey(Personas, on_delete=models.CASCADE, related_name='contact1')
+    nombre = models.CharField(max_length=50)
+
+    def  __str__(self):
+         return f'{self.formper}'
+
+
+     
+
+    
+    
+

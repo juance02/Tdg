@@ -9,11 +9,30 @@
         <div>
             <h2 class="username"><a href="{% url 'perfil' post.user.username %}">{{ post.user.username }}</a></h2>
             <i class="clock"></i>
-            <img  src="{{ post.imagen }}">
+            <div class="post">{{ post.nombre }}</div>
             <time data-time="#">{{ post.timestamp| naturaltime }}</time>
-            <div class="post">{{ post.precio| intcomma }}</div>
+            <div class="post">{{ post.precio | intcomma }}</div>
+            <img class="img1" src="{{ post.image.url }}">
             <div class="post">{{ post.descripcion }}</div>
-            <a class="boton" type="button" href="{% url 'listar_productos' %}">ver</a>
+            
+            <button><a class="follow-button" href="{% url 'contacto' post.user.username %}">contacto</a></button>
+            <div class="post">{{ post.nombres }}</div>
+            <div class="post">{{ post.apellidos }}</div>
+            <div class="post">{{ post.telefono }}</div>
+            <div class="post">{{ post.telefono_celular }}</div>
+            <div class="post">{{ post.correo_principal }}</div>
+            <div class="post">{{ post.correo_secundario }}</div>
+            <div class="post">{{ post.lugar_residencia }}</div>
+            <div class="post">{{ post.codigo_postal }}</div>
+            <div class="post">{{ post.numero_identificacion }}</div>
+            <div class="post">{{ post.numero_fecha_de_expedicion }}</div>
+            <div class="post">{{ post.numero_edad }}</div>
+            <div class="post">{{ post.numero_tipo_persona_idtipo_persona }}</div>
+            <div class="post">{{ post.numero_idtipo_de_documento_fk }}</div>
+            <br>
+            <button><a class="follow-button" href="{% url 'verProducto1' post.user.username %}">Edita tu Producto</a></button>
+
+            
         </div>
     </div>
 </article>

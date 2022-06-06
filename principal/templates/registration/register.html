@@ -39,9 +39,11 @@
                 {% csrf_token %}
                 {{ form | crispy }}
                 
-                <input type="reset" value="Cancelar" class="btn btn-primary" >
+                <p>Quieres volver a iniciar Sesion? <a class="link" href="{% url 'login' %}">Login</a></p>
+                <a class="btn btn-primary" href="{% url 'Form' %}">Cancelar</a>
                  &nbsp;
                 <input type="submit" value="Guardar" class="btn btn-primary" >
+
             </div>
         </form>
         {{mensaje}}

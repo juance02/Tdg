@@ -3,6 +3,7 @@ from email import message
 from multiprocessing import context
 from multiprocessing.dummy import current_process
 from webbrowser import get
+from wsgiref.util import request_uri
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages 
@@ -41,7 +42,10 @@ from django.contrib.auth.decorators import  login_required
 # Create your views here.
 
 def Inicio(request):
-    return render(request, "Form.html")
+    product = producto.objects.all()
+
+    context = { 'product': product}
+    return render(request, "Form.html", context)
 
 def  plantilla(request):
      product = producto.objects.all()
@@ -121,27 +125,22 @@ def eliminar_producto(request, pk):
     return redirect(to="listar_productos")
 
 
-def agregar_Perfil(request):
-    current_user = get_object_or_404(User, pk=request.user.pk)
-
+def editar_Perfil(request):
     if request.method == 'POST':
-        formulario = PerfilForm(data=request.POST, files=request.FILES)
-        if formulario.is_valid():
-            perfil = formulario.save(commit=False)
-            perfil.user = current_user
-            perfil.save()
-            messages.success(request, 'guardado el perfil')
+        u_formulario = UserUpdateForm(request.POST, instance=request.user)
+        p_formulario = ProductoUpdateForm(request.POST, request.FILES, instance=request.user.perfil)
+        if u_formulario.is_valid() and p_formulario.is_valid():
+            u_formulario.save()
+            p_formulario.save()
             return redirect('plantilla')
             
 
     else:
-        formulario = PerfilForm()
-
-    return render(request, 'app/perfil/crearPerfil.html', {'formulario' : formulario})
+        u_formulario = UserUpdateForm(instance=request.user)
+        p_formulario = ProductoUpdateForm()
+    context= {'u_formulario' : u_formulario, 'p_formulario':p_formulario}
+    return render(request, 'app/perfil/crearPerfil.html', context)
     
-
-
-
 
 def Categoria(request):
     return render(request, "Categoria.html")
@@ -158,23 +157,71 @@ def perfil(request, username=None):
         product = current_user.product.all()
         user = current_user
     return render(request, 'app/perfil/perfil.html', {'user':user, 'product':product})
-
+@login_required
 def agregar_personas(request):
     current_user = get_object_or_404(User, pk=request.user.pk)
 
     if request.method == 'POST':
         formulario = PersonasForm(data=request.POST)
         if formulario.is_valid():
-            Personas = formulario.save()
+            Personas = formulario.save(commit=False)
             Personas.user = current_user
             Personas.save()
             messages.success(request, 'Formulario de contacto cargado')
-            return redirect ('perfil')
+            return redirect ('Form')
 
     else:
         formulario = PersonasForm()
 
     return render(request, 'app/personas/personas.html', {'formulario' : formulario})
+@login_required
+def contacto(request, username=None):
+
+    current_user = request.user
+    if username and username !=current_user.username:
+        user = User.objects.get(username=username)
+        contact1 = user.contact1.all()
+
+    else:
+        contact1 = current_user.contact1.all()
+        user = current_user
+    return render(request, 'contacto/contacto.html', {'user':user, 'contact1':contact1})
+
+def  verProducto(request, username=None):
+    current_user = request.user
+    if username and username !=current_user.username:
+        user = User.objects.get(username=username)
+        product = user.product.all()
+
+    else:
+        product = current_user.product.all()
+        user = current_user
+    return render(request, 'app/producto/verproducto.html',{'user':user, 'product':product})
+
+def  verProducto1(request, username=None):
+    current_user = request.user
+    if username and username !=current_user.username:
+        user = User.objects.get(username=username)
+        product = user.product.all()
+
+    else:
+        product = current_user.product.all()
+        user = current_user
+    return render(request, 'app/producto/consultarp.html',{'user':user, 'product':product})
+
+def editar_Producto(request,pk):
+    
+    current_user = get_object_or_404(User, pk=request.user.pk)
+
+    
+    if request.method == 'POST':
+        formulario = ProductoForm(data=request.POST, instance=producto, files=request.FILES)
+        if formulario.is_valid():
+            producto.formulario.save(commit=False)
+            producto.user = current_user
+            return redirect(to="listar_productos")
+           
+    return render(request, 'app/producto/editarproducto.html', )
 
      
   

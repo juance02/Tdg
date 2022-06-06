@@ -1,0 +1,39 @@
+{% extends 'Form.html' %}
+{% block content %}
+{% load humanize %}
+
+{% for post in contact1 %}
+<article>
+    <div class="container-article">
+        <img src="{{ post.user.perfil.image.url }}">
+        <div>
+            
+            <h2 class="username"><a href="{% url 'contacto' post.user.username %}">{{ post.user.username }}</a></h2>
+            <div class="post"><h4>Nombre: {{ post.nombres }}</h4></div>
+            <div class="post"><h4>Apellidos: {{ post.apellidos }}</h4></div>
+            <div class="post"><h4>Telefono: {{ post.telefono }}</h4></div>
+            <div class="post"><h4>Telefono Celular: {{ post.telefono_celular }}</h4></div>
+            <div class="post"><h4>Correo Principal: {{ post.correo_principal }}</h4></div>
+            <div class="post"><h4>Correo Secundario: {{ post.correo_secundario }}</h4></div>
+            <div class="post"><h4>Lugar de Residencia: {{ post.lugar_residencia }}</h4></div>
+            <div class="post"><h4>Codigo Postal: {{ post.codigo_postal }}</h4></div>
+            <div class="post"><h4>Tipo de Documento: {{ post.idtipo_de_documento_fk }}</h4></div>
+            <div class="post"><h4>Numero de Identificacion: {{ post.numero_identificacion }}</h4></div>
+            <div class="post"><h4>Fecha de Expedicion: {{ post.fecha_de_expedicion }}</h4></div>
+            <div class="post"><h4>Edad: {{ post.edad }}</h4></div>
+            <div class="post"><h4>Rol: {{ post.tipo_persona_idtipo_persona }}</h4></div>
+            
+            
+            
+            
+            <a class="btn btn-primary" type="button" href="{% url 'Form' %}">volver</a>
+        </div>
+    </div>
+</article>
+{% endfor %}
+
+{{ block.super }}
+{% endblock %}
+
+
+

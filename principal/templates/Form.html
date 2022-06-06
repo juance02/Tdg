@@ -7,7 +7,7 @@
         <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet"  href="{% static 'normalize.css' %}">
 	<link rel="stylesheet"  href="{% static 'style.css' %}">
-	<link rel="stylesheet" href="{% static 'index.css' %}">
+	
 	
 </head>
 <body>
@@ -16,15 +16,18 @@
 			<h1 id="logo">Tierra de Grandes</h1>
 			<ul>
 				{% if request.user.is_authenticated %}
-				<li><a href="{% url 'logout' %}">cerrar</a></li>
+				<li><a href="{% url 'logout' %}">Cerrar</a></li>
 				{% else %}
 				<li><a href="{% url 'register' %}">Registrarse</a></li>
 				<li><a href="{% url 'login' %}">Inicia Sesion</a></li>
+					<script>
+						alert : ("deseas iniciar")
+					</script></a></li>
 				{% endif %}
 				<form action="#" method="post">
 					<select id="agileinfo-nav_search"name="agileinfo_search"class="border"required>
 						 <option value>Categorias</option>
-						 <option value="Verduras">Verduras</option>
+						 <option value="admin">Admin</a></option>
 						 <option value="Lacteos">Lacteos</option>
 						 <option value="Carnes">Carnes</option>
 						 <option value="Frutas">Frutas</option>
@@ -44,90 +47,53 @@
   </div>
   {% endfor %}
   {% endif %}
-  
+ 
+  {% if request.user.is_authenticated %}  
 <div class="main">
-		
+	   
 		<nav class="second-nav">
-			{% if request.user.is_authenticated %}
+			
 			<a class="feed" href="{% url 'perfil' %}">Tu Perfil</a>
-			<a class="feed" href="{% url 'plantilla' %}">Inicio</a>
+			<a class="feed" href="{% url 'Form' %}">Inicio</a>
 			<a class="profile" href="{% url 'agregar_Perfil' %}">Modifica tu Perfil</a>
 			<a class="new" href="{% url 'agregar_producto' %}">Agrega un Producto</a>
-			{% endif %}
+			
+			
+			
 			
 		</nav>
+		{% endif %}
+		{% block content %}	
 
-{% block content %}		
-
-		
-		
 </div>
 
+
+
+
 <section>
-		
+{% for post in product %}	
 	<div class="containerl">
-	   {% for post in product %}
-	   <div class="card">
-		   <img src="" alt="">
-		   <h2 class="username"><a href="{% url 'perfil' post.user.username %}">{{ post.user.username }}</a></h2>
-		   <h3 class="title" >Nombre</h3> 
-		   <div class="post">{{ post.descripcion }}</div>
-		   <p>Precio</p>
-		   <a href="">Ver</a>
-
-	   </div>
-	   {% endfor %}
-
-	   <div class="card">
-		   <img src="" alt="">
-		   <h3 class="title" >Nombre</h3>
-		   <p>descripcion</p>
-		   <p>Cantidad</p>
-		   <p>Precio</p>
-		   <p>Categoria</p>
-		   <a href="">Ver</a>
-
-	   </div>
-
-	   <div class="card">
-		   <img src="" alt="">
-		   <h3 class="title" >Nombre</h3>
-		   <p>descripcion</p>
-		   <p>Cantidad</p>
-		   <p>Precio</p>
-		   <p>Categoria</p>
-		   <a href="">Ver</a>
-
-	   </div>
-	   <div class="card">
-		   <img src="" alt="">
-		   <h3 class="title" >Nombre</h3>
-		   <p>descripcion</p>
-		   <p>Cantidad</p>
-		   <p>Precio</p>
-		   <p>Categoria</p>
-		   <a href="">Ver</a>
-
-	   </div>
-	   
+			
+	<div class="card">
+		<img src="{{post.image.url}}" width="100%">
+		<h2 class="post">{{ post.nombre }}</h2>
+		<p class="post">{{ post.descripcion }}</p>
+		<p class="post">{{ post.precio}}</p>
+		<h3 class="username"><a class="vende"  href="{% url 'perfil' post.user.username %}">{{ post.user.username }}</a></h3>
+		<a  class="boton"  href="{% url 'verProducto' post.user.username %}">Ver</a>
+		
 	</div>
 	
-</section>
-
-
-
-<section>
-	<div class="containerl">
+	<!--	
+	   <div class="containerl">
 	   <div class="card">
-		   <img src="{% static 'papas.jpg' %}" alt="">
-		   <h3 class="title" >Nombre</h3>
-		   <p>descripcion</p>
-		   <p>Cantidad</p>
+		   <img src="" alt="">
+		   <h3 class="title" >Nombre</h3> 
 		   <p>Precio</p>
-		   <p>Categoria</p>
 		   <a href="">Ver</a>
 
 	   </div>
+	
 
 	   <div class="card">
 		   <img src="" alt="">
@@ -159,10 +125,15 @@
 		   <p>Categoria</p>
 		   <a href="">Ver</a>
 
-	   </div>
+	   </div>-->
+	   
 	</div>
-   
+{% endfor %}
 </section>
+
+
+
+
 
 
 	<footer>

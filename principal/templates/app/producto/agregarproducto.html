@@ -1,14 +1,36 @@
-{% extends 'Form.html' %}
+
+{% load static %}
 
 {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Login.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    
+
 
 {% load crispy_forms_tags %}
+{# Cargamos la librería #}
+  {% load bootstrap4 %}
+ 
+  {# CSS Bootstrap #}
+  {% bootstrap_css %} 
+
+  {# Widget Tweaks #}
+  {% load widget_tweaks %}
+
  <br><br>
         <div class="row">
             <div class="col-12 col-md-6 offset-md-3">
                 <div class="card">
                     
-                    <div class="card-body">
+                    <div class="card-body12">
                         <h2>Agregar un Producto</h2>
                         <hr>
                         <form action="" method="post" enctype="multipart/form-data">
@@ -16,7 +38,7 @@
                         {% csrf_token %}
                         {{ formulario | crispy }}
                         <div class="d-felx justify-content-end">
-                        <input type="reset" value="Cancelar" class="btn btn-secondary">
+                        <a class="btn btn-primary" href="{% url 'Form' %}">Cancelar</a>
                          &nbsp;
                         <input type="submit" value="Guardar" class="btn btn-primary">
                     </div>
@@ -29,6 +51,6 @@
 
     
 </body>
-</html>
+</html> 
 
 {% endblock %}

@@ -3,6 +3,8 @@ body{
 	font-size: 62.5%;
   margin: 0 ;
 	font-family: 'Varela Round', Helvetica, Arial, serif;
+  
+  
 }
 /* Global Styles*/
 h1{
@@ -43,13 +45,11 @@ img{
 /* Nav bar */
 .main-head{
 	color: rgb(0, 0, 0);
-    background: rgb(84, 230, 121);
     box-shadow: 1px 2px 8px rgb(150, 150, 150)
 
 }
 .main{
   color: rgb(0, 0, 0);
-  background: rgb(84, 230, 121);
   box-shadow: 1px 2px 8px rgb(150, 150, 150)
 }
 
@@ -153,6 +153,12 @@ article{
   margin-right: 10px;
   border-radius: 50%;
 }
+.container-article img.img1{
+  height: 300px;
+  width: 300px;
+  margin-right: auto;
+  border-radius: 5%;
+}
 
 article:last-child {
   border-bottom: 0;
@@ -192,51 +198,92 @@ section{
   text-align: center;
   margin-bottom: 40px;
  
+  
+ 
 
 }
+
+.welcome{
+  
+}
+.wel-div{
+  padding: 180px;
+  background-image: url(2.jpg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+}
+
 
 .containerl{
   display:inline-flex;
 }
 
 .card{
-  width: 350px;
-  height: 300px;
+  width: 400px;
+  height: 320px;
   border-radius: 8px;
   margin-left: 20px;
   box-shadow: 1px 1px 8px rgb(150, 150, 150);
  
 }
 .card img{
-  margin-top: 20px;
-  border-radius: 4px;
+  margin-top: 10px;
+  border-radius: 2px;
   width: 80%;
-  box-shadow: 1px 1px 8px rgb(150, 150, 150);
-  height: 150px;
+  height: 120px;
 }
 .card p{
   text-align: left;
   margin-left: 20px;
 }
 
-.card a{
+.card .boton{
   width: 100px;
-  padding: 10px 40px 10px 40px ;
+  padding: 10px 30px 10px 30px ;
   background:green;
   border-radius: 4px;
+  margin-top:10px;
+  margin-left: 100px;
+  margin-right: auto;
   color:white;
 }
 
-.card a:hover{
+.card .boton:hover{
   width: 100px;
-  padding: 10px 40px 10px 40px ;
   background:none;
   border: 2px solid green;
   border-radius: 4px;
   color:rgb(24, 24, 24);
 }
 
+.card h3{
+text-align: left;
+margin-left: 20px;
+}
+.card-body12{
+  width: 80%;
+  height: 400px;
+}
 
+h3 .vende{
+  background: none;
+  color:black;
+  padding:none;
+  border: none;
+ 
+}
+
+h3 .vende:hover{
+  background: none;
+  padding:none;
+  border: none;
+  color:rgb(52, 146, 235);
+  text-decoration: underline;
+  text-decoration-color:rgb(52, 146, 235) ;
+  
+ 
+}
 
 
 

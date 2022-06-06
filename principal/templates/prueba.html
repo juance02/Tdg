@@ -1,0 +1,35 @@
+
+{% extends 'Form.html' %}
+{% load static %}
+{% block content %}
+{% load humanize %}
+
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+
+{% for post in product %}
+<article>
+        <div class="container-article">
+            <img src="{{ post.user.perfil.image.url }}">
+            <div>
+            
+        
+           <div>
+               <img src="" alt="">
+               <h3 class="title" >Nombre</h3> 
+               <div class="post">{{ post.nombre }}</div>
+               <div class="post">{{ post.descripcion }}</div>
+               <a href="">Ver</a>
+
+
+
+               
+    
+           </div>
+    
+           
+        </article>
+{% endfor %}
+    
+{% endblock %} 
+
+

@@ -4,10 +4,9 @@ body {
     height: 400px;
     background-size: cover;
     background-attachment: fixed;
-    background:#488EF4 ;
+    background-image: url(https://colombiapais.com/pagina-patrimonios/imagenes/paisaje-cafetero.jpg);
     background-position: center;
     background-position: left top;
-    box-shadow: 2px 4px 3px #504f4f;
 
 }
 * {
