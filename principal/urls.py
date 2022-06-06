@@ -30,7 +30,9 @@ urlpatterns = [
     path('verProducto/', views.verProducto, name='verProducto'),
     path('verProducto/<str:username>/', views.verProducto, name='verProducto'),
     path('verProducto1/<str:username>/', views.verProducto1, name='verProducto1'),
-     path('editar_Producto/<int:pk>/', views.editar_Producto, name="editar_Producto"),
+    path('editar_Producto/<int:pk>/', views.editar_Producto, name="editar_Producto"),
+    path('cart/',views.cart, name="cart"),
+    path('contact/',views.contact, name="contact")
     #path('CrearProducto/', views.CrearProducto),
     #path('VistaProducto/', views.VistaProducto),
     #path('categoria/', views.ListadoCategoria.as_view(template_name = "categoria/inicio.html"), name='leer'),

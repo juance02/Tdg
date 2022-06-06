@@ -1,166 +1,409 @@
-{% load static %}
+
 <!DOCTYPE html>
+{%load static %}
 <html lang="en">
-<head>
-  {% load bootstrap4 %}
-  {% bootstrap_css %} 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initia
-  l-scale=1.0">
-  <link rel="stylesheet" href="{% static 'index.css' %}">
-  
-  <title>Tierra de Grandes</title>
-</head>
-<body>
-  <img src="2.jpg" alt="">
-  <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Tierra de Grandes</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Registrar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Iniciar sesion</a>
-          </li>
-          
-                    
-                      <form action="#" method="post">
-                        <select id="agileinfo-nav_search"name="agileinfo_search"class="border"required>
-                             <option value>Categorias</option>
-                             <option value="Verduras">Verduras</option>
-                             <option value="Lacteos">Lacteos</option>
-                             <option value="Carnes">Carnes</option>
-                             <option value="Frutas">Frutas</option>
-                             <option value="Granos">Granos</option>
-                        </select>
-                      </form>
-                    </div>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </form>
-      </div>
-    </div>
+  <head>
+    <title>TDG</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-  </nav>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
 
-  <div class="contenedor" >
-    <div id="portfolio">
-      <div class="container-fluid p-0">
-          <div class="row g-0">
-              <div class="prod1">
-                  <a class="portfolio-box" href="{% static 'fruit.jpg' %}" title="Project Name">
-                      <img class="img-fluid" src="{% static 'fruit.jpg' %}" alt="..." />
-                      <div class="portfolio-box-caption">
-                          <div class="project-category text-white-50">Category</div>
-                          <div class="project-name">Project Name</div>
-                      </div>
-                  </a>
-              </div>
-              <div class="prod2">
-                  <a class="portfolio-box" href="{% static 'tomates.jpg' %}" title="Project Name">
-                      <img class="img-fluid" src="{% static 'tomates.jpg' %}" alt="..." />
-                      <div class="portfolio-box-caption">
-                          <div class="project-category text-white-50">Category</div>
-                          <div class="project-name">Project Name</div>
-                      </div>
-                  </a>
-              </div>
-              <div class="prod3">
-                  <a class="portfolio-box" href="{% static 'vegetables.jpg' %}" title="Project Name">
-                      <img class="img-fluid" src="{% static 'vegetables' %}" alt="..." />
-                      <div class="portfolio-box-caption">
-                          <div class="project-category text-white-50">Category</div>
-                          <div class="project-name">Project Name</div>
-                      </div>
-                  </a>
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
 
-              </div>
-              <div class="prod4">
-                  <a class="portfolio-box" href="{% static 'appetit.jpg' %}"  title =" <br> <b>  Escuchar musica </b>   <p><hr> En mis tiempos libres<br> escucho musica para relajar mi mente  ">
-                      <img class="img-fluid" src="{% static 'appetit.jpg' %} " alt="">
-                      <div class="portfolio-box-caption">
-                          <div class="project-category text-white-50">musica</div>
-                          <div class="project-name">Escuchar musica</div>
-                      </div>
-                  </a>
-              </div>
-              <div class="prod5">
-                  <a class="portfolio-box" href="{% static 'papas.jpg' %}" title="Project Name">
-                      <img class="img-fluid" src="{% static 'papas.jpg' %}" alt="">
-                      <div class="portfolio-box-caption">
-                          <div class="project-category text-white-50">Category</div>
-                          <div class="project-name">Project Name</div>
-                      </div>
-                  </a>
-              </div>
-              <div class="prod6">
-                  <a class="portfolio-box" href="{% static 'mango.jpg' %} title="Jugar videos juegos">
-                      <img class="img-fluid" src="{% static 'mango.jpg' %} width=" alt="">
-                      <div class="portfolio-box-caption p-3">
-                          <div class="project-category text-white-50">Category</div>
-                          <div class="project-name">Project Name</div>
-                      </div>
-                  </a>
-              </div>
-          </div>
-      </div>
-  </div>
-  <!-- Call to action-->
-  <section class="page-section bg-dark text-white">
-      <div class="container px-4 px-lg-5 text-center">
-          <h2 class="mb-4">Visita mi Perfil</h2>
-          <a class="btn btn-light btn-xl" href="https://www.facebook.com/juanpablo.ceronquinayas.3/">click</a>
-      </div>
-  </section>
-  <!-- Contact-->
-  <section class="page-section" id="contact">
-      <div class="container px-4 px-lg-5">
-          <div class="row gx-4 gx-lg-5 justify-content-center">
-              <div class="col-lg-8 col-xl-6 text-center">
-                  <h2 class="mt-0">contacto</h2>
-                  <hr class="divider" />
-                  <p class="text-muted mb-5">si tienes quejas o reclamos de o alguna no dudes en llamarnos </p>
-              </div>
-          </div>
-          </div>
-          <div class="row gx-4 gx-lg-5 justify-content-center">
-              <div class="col-lg-4 text-center mb-5 mb-lg-0">
-                  <i class="bi-phone fs-2 mb-3 text-muted"></i>
-                  <div>+57 3215969324</div>
-              </div>
-          </div>
-      </div>
-  </section>
-  <!-- Footer-->
-  <footer class="bg-light py-5">
-      <div class="container px-4 px-lg-5"><div class="small text-center text-muted"> &copy; 2022 - juan</div></div>
-  </footer>
-  <!-- Bootstrap core JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- SimpleLightbox plugin JS-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-  <!-- Core theme JS-->
-  <script src="js/scripts.js"></script>
-  
-  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-</body>
-</html>
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
 
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
 
+    
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body class="goto-here">
+		<div class="py-1 bg-primary">
+    	<div class="container">
+    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+	    		<div class="col-lg-12 d-block">
+		    		<div class="row d-flex">
+		    			<div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+						    <span class="text">3007845658</span>
+					    </div>
+					    <div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+						    <span class="text">Tierradegrandes@gmail.com</span>
+					    </div>
+					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+						    <span class="text">Los mejores productos los encuentras aquí &amp; Gratis y Rapido </span>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+		  </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="{% url 'Form' %}">TIERRA DE GRANDES 👀</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
 
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+	          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+              	<a class="dropdown-item" href="shop.html">Frutas</a>
+              	<a class="dropdown-item" href="wishlist.html">Verduras</a>
+                <a class="dropdown-item" href="product-single.html">Lacteos </a>
+                <a class="dropdown-item" href="cart.html">Granos</a>
+                <a class="dropdown-item" href="checkout.html">Carnes</a>
+              </div>
+            </li>
+	          <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Inicio de Sesion</a></li>
+	          <li class="nav-item"><a href="{% url 'register' %}" class="nav-link">Registrate</a></li>
+	          <li class="nav-item"><a href="{% url 'perfil' %}" class="nav-link">Perfil</a></li>
+            <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contacto</a></li>
+	          <li class="nav-item cta cta-colored"><a href="{% url 'cart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+		
 
-  </div>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+
+    <section id="home-section" class="hero">
+		  <div class="home-slider owl-carousel">
+	      <div class="slider-item" style="background-image: url(images/bg_1.jpg);">
+	      	<div class="overlay"></div>
+	        <div class="container">
+	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+	            <div class="col-md-12 ftco-animate text-center">
+	              <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
+	              <h2 class="subheading mb-4">Productos 100% colombianos &amp; fruits</h2>
+	              <p><a href="#" class="btn btn-primary">Ver Detalles</a></p>
+	            </div>
+
+	          </div>
+	        </div>
+	      </div>
+
+	      <div class="slider-item" style="background-image: url(images/bg_2.jpg);">
+	      	<div class="overlay"></div>
+	        <div class="container">
+	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+	            <div class="col-sm-12 ftco-animate text-center">
+	              <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
+	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
+	              <p><a href="#" class="btn btn-primary">Ver Detalles</a></p>
+	            </div>
+
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+    </section>
 
    
 
 
-</body>
+    <section class="ftco-section">
+    	<div class="container">
+				<div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+          	<span class="subheading">Productos destacados</span>
+            <h2 class="mb-4">Nuestros Productos</h2>
+            <p>La forma de visualizar nuestros productos</p>
+          </div>
+        </div>   		
+    	</div>
+		{% block content %}
+		{% for post in product %}
+    	<div class="container">
+			
+    		<div class="row">
+    			<div class="col-md-6 col-lg-3 ftco-animate">
+    				<div class="product">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="{{post.image.url}}" alt="Colorlib Template">
+    						<span class="status">30%</span>
+    						<div class="overlay"></div>
+    					</a>
+    					<div class="text py-3 pb-4 px-3 text-center">
+    						<h3><a href="#">{{post.nombre}}</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price"><span class="mr-2 price-dc">${{post.precio}}</span><span class="price-sale">$80.00</span></p>
+		    					</div>
+	    					</div>
+	    					<div class="bottom-area d-flex px-3">
+	    						<div class="m-auto d-flex">
+	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    								<span><i class="ion-ios-menu"></i></span>
+	    							</a>
+	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    								<span><i class="ion-ios-cart"></i></span>
+	    							</a>
+	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	    								<span><i class="ion-ios-heart"></i></span>
+	    							</a>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+				
+    			</div>
+    		</div>
+			
+    	</div>
+		{% endfor %}
+    </section>
+		
+	
+
+    <section class="ftco-section testimony-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section ftco-animate text-center">
+          	<span class="subheading">Testimonio</span>
+            <h2 class="mb-4">Testimonio de 
+				Nuestro cliente satisfecho</h2>
+            <p>Personal con experiencia y cualificado. Un servicio rápido y excepcional.
+				Adaptado a la necesidad del cliente en cada momento y con amplias alternativas.</p>
+          </div>
+        </div>
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel">
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text text-center">
+                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">Garreth Smith</p>
+                    <span class="position">Marketing Manager</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-5" style="background-image: url(images/person_2.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text text-center">
+                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">Garreth Smith</p>
+                    <span class="position">Interface Designer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-5" style="background-image: url(images/person_3.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text text-center">
+                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">Garreth Smith</p>
+                    <span class="position">UI Designer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text text-center">
+                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">Garreth Smith</p>
+                    <span class="position">Web Developer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap p-4 pb-5">
+                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text text-center">
+                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">Garreth Smith</p>
+                    <span class="position">System Analyst</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+		<section class="ftco-section ftco-partner">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-sm ftco-animate">
+    				<a href="#" class="partner"><img src="images/partner-1.png" class="img-fluid" alt="Colorlib Template"></a>
+    			</div>
+    			<div class="col-sm ftco-animate">
+    				<a href="#" class="partner"><img src="images/partner-2.png" class="img-fluid" alt="Colorlib Template"></a>
+    			</div>
+    			<div class="col-sm ftco-animate">
+    				<a href="#" class="partner"><img src="images/partner-3.png" class="img-fluid" alt="Colorlib Template"></a>
+    			</div>
+    			<div class="col-sm ftco-animate">
+    				<a href="#" class="partner"><img src="images/partner-4.png" class="img-fluid" alt="Colorlib Template"></a>
+    			</div>
+    			<div class="col-sm ftco-animate">
+    				<a href="#" class="partner"><img src="images/partner-5.png" class="img-fluid" alt="Colorlib Template"></a>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+      <div class="container py-4">
+        <div class="row d-flex justify-content-center py-5">
+          <div class="col-md-6">
+          	<h2 style="font-size: 22px;" class="mb-0">Escribe una recomendacion</h2>
+          	<span>Envianos un email, para nosotros poder conocer tus preferencias y opiniones.</span>
+          </div>
+          <div class="col-md-6 d-flex align-items-center">
+            <form action="#" class="subscribe-form">
+              <div class="form-group d-flex">
+                <input type="text" class="form-control" placeholder="Enter email address">
+                <input type="submit" value="Subscribe" class="submit px-3">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="ftco-footer ftco-section">
+      <div class="container">
+      	<div class="row">
+      		<div class="mouse">
+						<a href="#" class="mouse-icon">
+							<div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+						</a>
+					</div>
+      	</div>
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Tierra De Grandes</h2>
+              <p>Si puedes soñarlo puedes lograrlo.</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a href="https://twitter.com/?lang=es"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="https://es-la.facebook.com/"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="https://www.instagram.com/"><span class="icon-instagram"></span></a></li>
+			  </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Menu</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block"> inicio </a></li>
+                <li><a href="#" class="py-2 d-block">Perfil</a></li>
+                <li><a href="#" class="py-2 d-block">productos</a></li>
+                <li><a href="#" class="py-2 d-block">Contactanos</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Ayuda!!!</h2>
+              <div class="d-flex">
+	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+	                <li><a href="#" class="py-2 d-block">Buscar informacion</a></li>
+	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+	              </ul>
+	              <ul class="list-unstyled">
+	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
+	                <li><a href="#" class="py-2 d-block">Contact</a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">¿Tienes preguntas?...</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">a 3-111, Cra. 3 #3-1, Popayán, Cauca</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">3165482565</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Tierradegrandes@gmail.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %} "></script>
+  <script src="{% static 'js/jquery.waypoints.min.js' %} "></script>
+  <script src="{% static 'js/jquery.stellar.min.js' %} "></script>
+  <script src="{% static 'js/owl.carousel.min.js' %} "></script>
+  <script src="{% static 'js/jquery.magnific-popup.min.js' %} "></script>
+  <script src="{% static 'js/aos.js' %} "></script>
+  <script src="{% static 'js/jquery.animateNumber.min.js' %}  "></script>
+  <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+  <script src="{% static 'js/scrollax.min.js' %}"></script>
+  <script src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false' %}"></script>
+  <script src="{% static 'js/google-map.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  {% endblock content %}    
+  </body>
 </html>

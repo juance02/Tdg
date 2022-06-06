@@ -1,10 +1,9 @@
-{% extends 'plantillas.html' %}
-
-
+{% extends 'index.html' %}
+{% load static %}
 {% block content %}
 {% load crispy_forms_tags %}
 
-
+<link rel="stylesheet" href="{% static 'perfil.css' %}">
 
 <!-- Profile -->
 <div class="profile">

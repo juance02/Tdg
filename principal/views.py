@@ -45,7 +45,7 @@ def Inicio(request):
     product = producto.objects.all()
 
     context = { 'product': product}
-    return render(request, "Form.html", context)
+    return render(request, "index.html", context)
 
 def  plantilla(request):
      product = producto.objects.all()
@@ -224,7 +224,11 @@ def editar_Producto(request,pk):
     return render(request, 'app/producto/editarproducto.html', )
 
      
-  
+def cart(request):
+    return render (request,"cart.html") 
+
+def contact(request):
+    return render (request,"contact.html")     
 
 
  

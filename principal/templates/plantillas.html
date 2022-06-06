@@ -1,4 +1,4 @@
-{% extends 'Form.html' %}
+{% extends 'index.html' %}
 {% block content %}
 {% load humanize %}
 
@@ -30,7 +30,7 @@
             <div class="post">{{ post.numero_tipo_persona_idtipo_persona }}</div>
             <div class="post">{{ post.numero_idtipo_de_documento_fk }}</div>
             <br>
-            <button><a class="follow-button" href="{% url 'verProducto1' post.user.username %}">Edita tu Producto</a></button>
+            
 
             
         </div>
