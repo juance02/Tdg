@@ -90,7 +90,7 @@ def agregar_Producto(request):
             producto.user = current_user
             producto.save()
             messages.success(request, 'producto cargado')
-            return redirect ('plantilla')
+            return redirect ('perfil')
 
     else:
         formulario = ProductoForm()

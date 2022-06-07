@@ -25,3 +25,17 @@
 	border-bottom: 2px solid #ECEEEF;
 	padding-bottom: 20px;
 }
+
+
+.ele{
+	padding: 40px;
+	text-align: center;
+
+}
+.ele h2{
+	text-align: center;
+}
+
+.ftco-footer {
+	margin-top: 100px;
+}

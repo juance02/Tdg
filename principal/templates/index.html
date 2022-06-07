@@ -140,14 +140,13 @@
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
     					<a href="{% url 'verProducto' %}" class="img-prod"><img class="img-fluid" src="{{post.image.url}}" alt="Colorlib Template">
-    						<span class="status">30%</span>
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
     						<h3><a href="#">{{post.nombre}}</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
-		    						<p class="price"><span class="mr-2 price-dc">${{post.precio}}</span><span class="price-sale">$80.00</span></p>
+		    						<p class="price"><span class="price-sale">{{post.precio}}</span></p>
 		    					</div>
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">
@@ -169,14 +168,13 @@
           <div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
     					<a href="{% url 'verProducto' %}" class="img-prod"><img class="img-fluid" src="{% static 'images/product-1.jpg' %}" alt="Colorlib Template">
-    						<span class="status">30%</span>
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
     						<h3><a href="#">Bell Pepper</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
-		    						<p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
+		    						<p class="price"><span class="price-sale">$80.00</span></p>
 		    					</div>
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">
@@ -294,27 +292,7 @@
 
     <hr>
 
-		<section class="ftco-section ftco-partner">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="images/partner-1.png" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
-    			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="images/partner-2.png" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
-    			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="images/partner-3.png" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
-    			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="images/partner-4.png" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
-    			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="images/partner-5.png" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
-    		</div>
-    	</div>
-    </section>
+		
 
 		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
       <div class="container py-4">
