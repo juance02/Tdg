@@ -91,7 +91,7 @@ DATABASES = {
         'NAME': 'tierra_de_grandes',
         'USER': 'root',
         'PASSWORD' : 'Admin1234*',
-        'PORT' : '3308',
+        'PORT' : '3306',
         'HOST': '127.0.0.1'
     }
 }

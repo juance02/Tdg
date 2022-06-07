@@ -196,7 +196,7 @@ def  verProducto(request, username=None):
     else:
         product = current_user.product.all()
         user = current_user
-    return render(request, 'app/producto/verproducto.html',{'user':user, 'product':product})
+    return render(request, 'app/producto/product-single.html',{'user':user, 'product':product})
 
 def  verProducto1(request, username=None):
     current_user = request.user
