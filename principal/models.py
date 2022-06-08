@@ -198,6 +198,7 @@ class producto(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product')
     nombre = models.CharField(max_length=50)
     precio = models.FloatField()  # Field name made lowercase.
+    Informacion_de_produccion = models.CharField(max_length=100)
     image = models.ImageField(upload_to="productos/",null=True,blank=True)  # Field name made lowercase.
     timestamp = models.DateTimeField(default=timezone.now)
     descripcion = models.TextField()

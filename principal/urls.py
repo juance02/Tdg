@@ -11,7 +11,7 @@ from principal.views import *
 urlpatterns = [
     path('', views.Inicio, name="Form"),
     path('plantilla/', views.plantilla, name="plantilla"),
-    path('contactar/', views.contactar,name="contactar"),
+   # path('contactar/', views.contactar,name="contactar"),
     #path('', include('django.contrib.auth.urls')),
     path('Registrarse/', views.register, name= 'register'),
     path('Categoria/', views.Categoria, name="Categoria"),

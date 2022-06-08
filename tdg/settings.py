@@ -91,7 +91,7 @@ DATABASES = {
         'NAME': 'tierra_de_grandes',
         'USER': 'root',
         'PASSWORD' : 'Admin1234*',
-        'PORT' : '3306',
+        'PORT' : '3308',
         'HOST': '127.0.0.1'
     }
 }
@@ -132,7 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-LOGIN_REDIRECT_URL='plantilla'
+LOGIN_REDIRECT_URL='Form'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

@@ -53,13 +53,13 @@ def  plantilla(request):
      context = { 'product': product}
      return render(request,"plantillas.html", context)
 
-def contactar(request):
-    if request.method == "POST":
-        asunto = request.POST["txtAsunto"]
-        descripcion = request.POST["textmsg"] + "/ Email: " + request.POST["txtEmail"]
-        email_desde = settings.EMAIL_HOST_USER
-        email_para = ["didiervalenciarodriguez@gmail.com"]
-        send_mail(asunto,descripcion,email_desde,email_para,  fail_silently=False)
+#def contactar(request):
+    #if request.method == "POST":
+     #   asunto = request.POST["txtAsunto"]
+      #  descripcion = request.POST["textmsg"] + "/ Email: " + request.POST["txtEmail"]
+       # email_desde = settings.EMAIL_HOST_USER
+        #email_para = ["didiervalenciarodriguez@gmail.com"]
+        #send_mail(asunto,descripcion,email_desde,email_para,  fail_silently=False)
      #   return render(request,"contactoExitoso.html")
     #return render(request,"Form.html")
 def register(request):
@@ -72,7 +72,7 @@ def register(request):
             user = authenticate(username=username, password=password)
             login(request, user) 
             messages.success(request, f'Usuario {username} creado')         
-            return redirect('plantilla')
+            return redirect('Form')
             
     else:
         form = UserCreationForm()
@@ -128,7 +128,7 @@ def eliminar_producto(request, pk):
 def editar_Perfil(request):
     if request.method == 'POST':
         u_formulario = UserUpdateForm(request.POST, instance=request.user)
-        p_formulario = ProductoUpdateForm(request.POST, request.FILES, instance=request.user.perfil)
+        p_formulario = PerfilUpdateForm(request.POST, request.FILES, instance=request.user.perfil)
         if u_formulario.is_valid() and p_formulario.is_valid():
             u_formulario.save()
             p_formulario.save()
@@ -137,7 +137,7 @@ def editar_Perfil(request):
 
     else:
         u_formulario = UserUpdateForm(instance=request.user)
-        p_formulario = ProductoUpdateForm()
+        p_formulario = PerfilUpdateForm()
     context= {'u_formulario' : u_formulario, 'p_formulario':p_formulario}
     return render(request, 'app/perfil/crearPerfil.html', context)
     
@@ -227,10 +227,17 @@ def editar_Producto(request,pk):
 def cart(request):
     return render (request,"cart.html") 
 
+
 def contact(request):
-    return render (request,"contact.html")     
+    if request.method == "POST":
+        asunto = request.POST["txtAsunto"]
+        descripcion = request.POST["textmsg"] + "/ Email: " + request.POST["txtEmail"]
+        email_desde = settings.EMAIL_HOST_USER
+        email_para = ["didiervalenciarodriguez@gmail.com"]
+        send_mail(asunto,descripcion,email_desde,email_para,  fail_silently=False)
+        return render(request,"contact.html")
 
-
- 
+        
+  
    
 

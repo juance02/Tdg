@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
+  
   <body class="goto-here">
 		<div class="py-1 bg-primary">
     	<div class="container">
@@ -61,7 +62,7 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+	          
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -72,19 +73,23 @@
                 <a class="dropdown-item" href="checkout.html">Carnes</a>
               </div>
             </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item"><a href="{% url 'perfil' %}" class="nav-link">Perfil</a></li>
+            <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Cerrar</a></li>
+            <img class="img2" src="{{ user.perfil.image.url }}" height="60px" width="60px" style="border-radius: 50% ;" >
+            {% else %}
 	          <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Inicio de Sesion</a></li>
 	          <li class="nav-item"><a href="{% url 'register' %}" class="nav-link">Registrate</a></li>
-	          <li class="nav-item"><a href="{% url 'perfil' %}" class="nav-link">Perfil</a></li>
             <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contacto</a></li>
 	          <li class="nav-item cta cta-colored"><a href="{% url 'cart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
-		
-
+            {% endif %}
+            
 	        </ul>
 	      </div>
 	    </div>
 	  </nav>
     <!-- END nav -->
-
+    {% block content %}
     <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
 	      <div class="slider-item" style="background-image: url(images/bg_1.jpg);">
@@ -121,8 +126,9 @@
 
    
 
-
+    
     <section class="ftco-section">
+      
     	<div class="container">
 				<div class="row justify-content-center mb-3 pb-3">
           <div class="col-md-12 heading-section text-center ftco-animate">
@@ -132,21 +138,23 @@
           </div>
         </div>   		
     	</div>
-		{% block content %}
-
+     
+      
     	<div class="container">
         
     		<div class="row">
+        {% for post in product %} 
+          
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="{% url 'verProducto' %}" class="img-prod"><img class="img-fluid" src="{{post.image.url}}" alt="Colorlib Template">
+    					<a href="{% url 'verProducto' post.user.username %}" class="img-prod"><img class="img-fluid" src="{{post.image.url}}" alt="Colorlib Template">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
     						<h3><a href="#">{{post.nombre}}</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
-		    						<p class="price"><span class="price-sale">{{post.precio}}</span></p>
+		    						<p class="price"><span class="price-sale">${{post.precio}}</span></p>
 		    					</div>
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">
@@ -165,37 +173,10 @@
     					</div>
     				</div>
           </div>
-          <div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="{% url 'verProducto' %}" class="img-prod"><img class="img-fluid" src="{% static 'images/product-1.jpg' %}" alt="Colorlib Template">
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Bell Pepper</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span class="price-sale">$80.00</span></p>
-		    					</div>
-	    					</div>
-	    					<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>    
-			
-    	</div>
-	
+        {% endfor %}
+    	 </div>
+      </div>
+   
     </section>
 		
 	
@@ -311,7 +292,9 @@
           </div>
         </div>
       </div>
+
     </section>
+    {% endblock content %} 
     <footer class="ftco-footer ftco-section">
       <div class="container">
       	<div class="row">
@@ -350,9 +333,9 @@
               <div class="d-flex">
 	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
 	                <li><a href="#" class="py-2 d-block">Buscar informacion</a></li>
-	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
-	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
-	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+	                <!--<li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>-->
+	                <li><a href="#" class="py-2 d-block">Terminos &amp; Condiciones</a></li>
+	                <li><a href="#" class="py-2 d-block">Politica y privacidad</a></li>
 	              </ul>
 	              <ul class="list-unstyled">
 	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
@@ -408,6 +391,6 @@
   <script src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false' %}"></script>
   <script src="{% static 'js/google-map.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
-  {% endblock content %}    
+   
   </body>
 </html>
