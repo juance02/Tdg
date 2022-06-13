@@ -174,9 +174,9 @@ def agregar_personas(request):
         formulario = PersonasForm()
 
     return render(request, 'app/personas/personas.html', {'formulario' : formulario})
+
 @login_required
 def contacto(request, username=None):
-
     current_user = request.user
     if username and username !=current_user.username:
         user = User.objects.get(username=username)
@@ -186,6 +186,7 @@ def contacto(request, username=None):
         contact1 = current_user.contact1.all()
         user = current_user
     return render(request, 'contacto/contacto.html', {'user':user, 'contact1':contact1})
+
 
 def  verProducto(request, username=None):
     current_user = request.user
@@ -210,7 +211,6 @@ def  verProducto1(request, username=None):
     return render(request, 'app/producto/consultarp.html',{'user':user, 'product':product})
 
 def editar_Producto(request,pk):
-    
     current_user = get_object_or_404(User, pk=request.user.pk)
 
     

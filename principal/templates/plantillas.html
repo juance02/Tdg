@@ -2,9 +2,17 @@
 {% block content %}
 {% load humanize %}
 
-{% for post in product %}
-<article>
+
+
+
+<div class="container">
+    <div class="ele">
+        <h2>Descripcion</h2>
+        <p>{{ user.descripcion }}</p>
+       </div>
+
 	<div class="col-md-6 col-lg-3 ftco-animate">
+        {% for post in product %}
         <div class="product">
             <a href="{% url 'verProducto' %}" class="img-prod"><img class="img-fluid" src="{{ post.image.url }}" alt="Colorlib Template">
                 <div class="overlay"></div>
@@ -22,15 +30,16 @@
                 <button><a class="follow-button" href="{ url 'editar_Producto' p.pk }">Edita tu Producto</a></button>
             </div>
         </div>
+        {% endfor %}
 </div>
     <div class="container-article">
         
-            
+         
 
             
         </div>
     
-</article>
-{% endfor %}
+</div>
+
                         
 {% endblock %}

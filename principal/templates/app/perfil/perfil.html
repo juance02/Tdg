@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 {%load static %}
 {% block content %}
+{% load humanize %}
 {% load crispy_forms_tags %}
 
 <html lang="en">
@@ -42,7 +43,7 @@
 	</div>
 		
 
-		<div class="container">
+	<div class="container">
 			<div class="ele">
 				<h2>Descripcion</h2>
 				<p>{{ user.descripcion }}</p>
@@ -50,56 +51,56 @@
 
         
     		<div class="row">
+				{% for post in product %}
     			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="{% url 'verProducto' %}" class="img-prod"><img class="img-fluid" src="{{post.image.url}}" alt="Colorlib Template">
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">{{post.nombre}}</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span class="price-sale">{{post.precio}}</span></p>
-		    					</div>
-	    					</div>
-	    					
-							<button><a class="follow-button" href="{ url 'editar_Producto' p.pk }">Edita tu Producto</a></button>
-    					</div>
-    				</div>
-          </div>
-          <div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="product">
+						<a href="{% url 'verProducto' %}" class="img-prod"><img class="img-fluid" src="{{ post.image.url }}" alt="Colorlib Template">
+							<div class="overlay"></div>
+						</a>
+						<div class="text py-3 pb-4 px-3 text-center">
+							<h3><a href="#">{{post.nombre}}</a></h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<time data-time="#">{{ post.timestamp| naturaltime }}</time>
+									<p class="price"><span class="price-sale">{{post.precio| intcomma}}</span></p>
+									<div class="post">{{ post.descripcion }}</div>
+								</div>
+							</div>
+							
+							
+						
+    						
+						</div>
+					</div>
+					 
+		
+    			</div> 
+				{% endfor %}   
+				<div class="col-md-6 col-lg-3 ftco-animate">
 
     				
     					
     					
-    						<h3><a href="{% url 'agregar_producto' %}" class="btn btn-primary py-3 px-4">Agregar Producto</a></h3>
-    						
-    							
-	    					
-	    					
-    					
-    				</div>
-    			</div>    
+					<h3><a href="{% url 'agregar_producto' %}" class="btn btn-primary py-3 px-4">Agregar Producto</a></h3>
+					
+						
+					
+					
+				
+			</div>
+				
 			
-    	</div>	
+    	</div>
+	</div>	
 		
 	
 		
 		
 		
 		
-	{{ block.super }}
 	
 	
-	{% endblock %}
-	
-	
-	
-  
-
-		
-
-		
- 
+{% endblock %}
+	 
   </body>
 </html>
