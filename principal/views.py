@@ -239,15 +239,21 @@ def editar_Producto(request,pk):
 def cart(request):
     return render (request,"cart.html") 
 
-
 def contact(request):
+    return render(request, "contact.html")
+
+
+def contactar(request):
     if request.method == "POST":
-        asunto = request.POST["txtAsunto"]
-        descripcion = request.POST["textmsg"] + "/ Email: " + request.POST["txtEmail"]
+        asunto = request.POST["txtAsunto"] 
+        mensaje = request.POST["txtMensaje"] + "/ Email: " + request.POST["txtEmail"]
         email_desde = settings.EMAIL_HOST_USER
         email_para = ["didiervalenciarodriguez@gmail.com"]
-        send_mail(asunto,descripcion,email_desde,email_para,  fail_silently=False)
-        return render(request,"contact.html")
+        send_mail(asunto, mensaje, email_desde, email_para,  fail_silently=False)
+        return render (request,"contactoExitoso.html")
+    return render(request, "contact.html")
+
+        
 
         
   

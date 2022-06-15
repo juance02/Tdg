@@ -27,6 +27,19 @@ class Calificaciones(models.Model):
         managed = False
         db_table = 'calificaciones'
 
+class calificacionesuser(models.Model):
+    from_user = models.ForeignKey(User, related_name='califi', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(User, related_name='califi_to', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.from_user} to {self.to_user} '
+    
+    class Meta:
+        indexes = [
+        models.Index(fields=['from_user', 'to_user',]),
+        ]
+
+
 
 class Categoria(models.Model):
     idcategoria = models.AutoField(db_column='idCategoria', primary_key=True)  # Field name made lowercase.
@@ -192,6 +205,7 @@ class perfil(models.Model):
 
     def  __str__(self):
          return f'Perfil de {self.user.username}'
+    
 
 
 class producto(models.Model):
@@ -246,6 +260,8 @@ class contacto (models.Model):
 
     def  __str__(self):
          return f'{self.formper}'
+
+
 
 
      

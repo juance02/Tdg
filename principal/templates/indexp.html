@@ -78,12 +78,12 @@
             {% if request.user.is_authenticated %}
             
             <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Cerrar</a></li>
-            <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contacto</a></li>
+            
             
             {% else %}
 	          <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Inicio de Sesion</a></li>
 	          <li class="nav-item"><a href="{% url 'register' %}" class="nav-link">Registrate</a></li>
-            <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contacto</a></li>
+            
 	          <li class="nav-item cta cta-colored"><a href="{% url 'cart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
             {% endif %}
             
@@ -95,7 +95,7 @@
     {% block content %}
     <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
-	      <div class="slider-item" style="background-image: url(images/bg_1.jpg);">
+	      <div class="slider-item" style="background-image: url(images/vegetal.jpg);">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -110,7 +110,7 @@
 	        </div>
 	      </div>
 
-	      <div class="slider-item" style="background-image: url(images/bg_2.jpg);">
+	      <div class="slider-item" style="background-image: url(images/vegetal.jpg);">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -345,13 +345,14 @@
               <div class="d-flex">
 	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
 	                <li><a href="#" class="py-2 d-block">Buscar informacion</a></li>
+                  <li><a href="#" class="py-2 d-block">¿Quienes somos?</a></li>
 	                <!--<li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>-->
 	                <li><a href="#" class="py-2 d-block">Terminos &amp; Condiciones</a></li>
-	                <li><a href="#" class="py-2 d-block">Politica y privacidad</a></li>
+	                <!--<li><a href="#" class="py-2 d-block">Politica y privacidad</a></li>-->
 	              </ul>
 	              <ul class="list-unstyled">
-	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
-	                <li><a href="#" class="py-2 d-block">Contact</a></li>
+	                <!--<li><a href="#" class="py-2 d-block">FAQs</a></li>-->
+	                <li><a href="{% url 'contactar' %}" class="py-2 d-block">Contactanos</a></li>
 	              </ul>
 	            </div>
             </div>

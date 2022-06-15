@@ -2,6 +2,8 @@ from re import template
 from unicodedata import name
 from django.urls import path, include
 from . import views
+#from static import contact, contactar 
+
 
 #from principal.views import perfilview
 from django.contrib.auth.views import LoginView, LogoutView
@@ -12,7 +14,7 @@ urlpatterns = [
     path('', views.Inicio, name="Form"),
     path('plantilla/', views.plantilla, name="plantilla"),
     path('indexp/', views.indexp, name="indexp"),
-   # path('contactar/', views.contactar,name="contactar"),
+    #path('contactar/', views.contactar,name="contactar"),
     #path('', include('django.contrib.auth.urls')),
     path('Registrarse/', views.register, name= 'register'),
     path('Categoria/', views.Categoria, name="Categoria"),
@@ -24,7 +26,7 @@ urlpatterns = [
     path('perfil/', views.perfil, name='perfil'),
     path('perfil/<str:username>/', views.perfil, name='perfil'),
     path('perfilusu/<str:username>/', views.perfilusu, name='perfilusu'),
-    path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('login/', LoginView.as_view(template_name='registration/Login1.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
     path('agregar-personas/', views.agregar_personas, name="agregar_personas"),
     path('contacto/', views.contacto, name="contacto"),
@@ -34,7 +36,10 @@ urlpatterns = [
     path('verProductoo/<int:pk>/', views.verProductoo, name='verProductoo'),
     path('editar_Producto/<int:pk>/', views.editar_Producto, name="editar_Producto"),
     path('cart/',views.cart, name="cart"),
-    path('contact/',views.contact, name="contact")
+    path('contactar/', views.contactar, name="contactar"),
+    path('contact/', views.contact, name="contact"),
+
+ 
     #path('CrearProducto/', views.CrearProducto),
     #path('VistaProducto/', views.VistaProducto),
     #path('categoria/', views.ListadoCategoria.as_view(template_name = "categoria/inicio.html"), name='leer'),
