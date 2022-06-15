@@ -1,10 +1,11 @@
 {% extends 'index.html' %}
 {% block content %}
+{% load static %}
 {% load humanize %}
-
+<link rel="stylesheet" href="{% static 'perfil.css' %}">
 {% for post in contact1 %}
 <article>
-    <div class="container-article">
+    <div class="profile">
         <img src="{{ post.user.perfil.image.url }}">
         <div>
             
@@ -32,7 +33,7 @@
 </article>
 {% endfor %}
 
-{{ block.super }}
+
 {% endblock %}
 
 

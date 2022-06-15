@@ -16,30 +16,27 @@
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>descripcion</th>
-                <th>¿Es de buena calidad?</th>
+                <th>imagenes</th>
                 <th>Opciones</th>
                 <th>Eliminar</th>
         
             </tr>
-            {% for p in productos %}
+            {% for post in productos %}
                 <tr>
-                    <td>{{ p.nombre | title }}</td>
-                    <td>${{ p.precio | intcomma }}</td>
-                    <td>{{ p.descripcion | title }}</td>
-                    <td>
-                        {% if p.calidad %}
-                        SI
-                        {% else %}
-                        NO
-                        {% endif %}
-                    </td>
+                    <td>{{ post.nombre | title }}</td>
+                    <td>${{ post.precio | intcomma }}</td>
+                    <td>{{ post.descripcion | title }}</td>
+                    <td><img src="{{ post.image.url }}" height="60px" width="60px" alt=""></td>
+                   
                     <td>
                         
 
-                        <button type="submit" id="submit"><a href="{% url 'modificar_producto' p.pk %}"class="btn btn-info btn-sm">modificar</a></button>
+                        <button type="submit" id="submit"><a href="{% url 'modificar_producto' post.pk %}"class="btn btn-info btn-sm">modificar</a></button>
                     </td>
                     <td>
-                        <button type="submit" id="submit"><a href="{% url 'eliminar_producto' p.pk %}"class="btn btn-danger btn-sm">Eliminar</a></button>
+                        
+                        <button onclick="return eliminar();" type="submit"><a href="{% url 'eliminar_producto' post.pk %}"class="btn btn-danger btn-sm">Eliminar</a></button>
+                        
                     </td>
         
                 </tr>

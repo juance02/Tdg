@@ -11,6 +11,7 @@ from principal.views import *
 urlpatterns = [
     path('', views.Inicio, name="Form"),
     path('plantilla/', views.plantilla, name="plantilla"),
+    path('indexp/', views.indexp, name="indexp"),
    # path('contactar/', views.contactar,name="contactar"),
     #path('', include('django.contrib.auth.urls')),
     path('Registrarse/', views.register, name= 'register'),
@@ -22,6 +23,7 @@ urlpatterns = [
     path('agregar-perfil/', views.editar_Perfil, name="agregar_Perfil"),
     path('perfil/', views.perfil, name='perfil'),
     path('perfil/<str:username>/', views.perfil, name='perfil'),
+    path('perfilusu/<str:username>/', views.perfilusu, name='perfilusu'),
     path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
     path('agregar-personas/', views.agregar_personas, name="agregar_personas"),
@@ -29,7 +31,7 @@ urlpatterns = [
     path('contacto/<str:username>/', views.contacto, name="contacto"),
     path('verProducto/', views.verProducto, name='verProducto'),
     path('verProducto/<str:username>/', views.verProducto, name='verProducto'),
-    path('verProducto1/<str:username>/', views.verProducto1, name='verProducto1'),
+    path('verProductoo/<int:pk>/', views.verProductoo, name='verProductoo'),
     path('editar_Producto/<int:pk>/', views.editar_Producto, name="editar_Producto"),
     path('cart/',views.cart, name="cart"),
     path('contact/',views.contact, name="contact")

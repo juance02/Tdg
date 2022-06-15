@@ -1,45 +1,40 @@
-{% extends 'index.html' %}
+{% extends 'indexp.html' %}
 {% block content %}
 {% load humanize %}
 
 
-
-
-<div class="container">
-    <div class="ele">
-        <h2>Descripcion</h2>
-        <p>{{ user.descripcion }}</p>
-       </div>
-
-	<div class="col-md-6 col-lg-3 ftco-animate">
-        {% for post in product %}
-        <div class="product">
-            <a href="{% url 'verProducto' %}" class="img-prod"><img class="img-fluid" src="{{ post.image.url }}" alt="Colorlib Template">
-                <div class="overlay"></div>
-            </a>
-            <div class="text py-3 pb-4 px-3 text-center">
-                <h3><a href="#">{{post.nombre}}</a></h3>
-                <div class="d-flex">
-                    <div class="pricing">
-                        <time data-time="#">{{ post.timestamp| naturaltime }}</time>
-                        <p class="price"><span class="price-sale">{{post.precio| intcomma}}</span></p>
+<article>
+	<div class="row">
+        {% for post in product %} 
+        <div class="col-md-6 col-lg-3 ftco-animate">
+            <div class="product">
+                <a href="{% url 'verProducto' post.user.username %}" class="img-prod"><img class="img-fluid" src="{{post.image.url}}" alt="Colorlib Template">
+                    <div class="overlay"></div>
+                </a>
+                <div class="text py-3 pb-4 px-3 text-center">
+                    <h3><a href="#">{{post.nombre}}</a></h3>
+                    <div class="d-flex">
+                        <div class="pricing">
+                         <time data-time="#">{{ post.timestamp| naturaltime }}</time>
+                        <p class="price"><span class="price-sale">${{post.precio| intcomma}}</span></p>
                         <div class="post">{{ post.descripcion }}</div>
+                        </div>
                     </div>
+                    
+                    <button><a class="follow-button" href="{ url 'editar_Producto' p.pk }">Edita tu Producto</a></button>
                 </div>
-                
-                <button><a class="follow-button" href="{ url 'editar_Producto' p.pk }">Edita tu Producto</a></button>
             </div>
-        </div>
-        {% endfor %}
-</div>
-    <div class="container-article">
-        
-         
+  </div>
+ 
+            {% endfor %}
+        </div>   
 
-            
-        </div>
     
-</div>
+</div>	
+
+    
+    
+</article>
 
                         
 {% endblock %}

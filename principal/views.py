@@ -52,6 +52,9 @@ def  plantilla(request):
 
      context = { 'product': product}
      return render(request,"plantillas.html", context)
+def  indexp(request):
+    
+     return render(request,"indexp.html")
 
 #def contactar(request):
     #if request.method == "POST":
@@ -132,7 +135,7 @@ def editar_Perfil(request):
         if u_formulario.is_valid() and p_formulario.is_valid():
             u_formulario.save()
             p_formulario.save()
-            return redirect('plantilla')
+            return redirect('perfil')
             
 
     else:
@@ -157,6 +160,18 @@ def perfil(request, username=None):
         product = current_user.product.all()
         user = current_user
     return render(request, 'app/perfil/perfil.html', {'user':user, 'product':product})
+
+def perfilusu(request, username=None):
+
+    current_user = request.user
+    if username and username !=current_user.username:
+        user = User.objects.get(username=username)
+        product = user.product.all()
+
+    else:
+        product = current_user.product.all()
+        user = current_user
+    return render(request, 'app/perfil/perfilusuarios.html', {'user':user, 'product':product})
 @login_required
 def agregar_personas(request):
     current_user = get_object_or_404(User, pk=request.user.pk)
@@ -168,7 +183,7 @@ def agregar_personas(request):
             Personas.user = current_user
             Personas.save()
             messages.success(request, 'Formulario de contacto cargado')
-            return redirect ('Form')
+            return redirect ('contacto')
 
     else:
         formulario = PersonasForm()
@@ -199,16 +214,13 @@ def  verProducto(request, username=None):
         user = current_user
     return render(request, 'app/producto/product-single.html',{'user':user, 'product':product})
 
-def  verProducto1(request, username=None):
-    current_user = request.user
-    if username and username !=current_user.username:
-        user = User.objects.get(username=username)
-        product = user.product.all()
-
-    else:
-        product = current_user.product.all()
-        user = current_user
-    return render(request, 'app/producto/consultarp.html',{'user':user, 'product':product})
+def  verProductoo(request, pk):
+    productos = producto.objects.filter(pk=pk)
+    data ={
+        'productos': productos
+    } 
+    return render(request, 'vistas12.html', data)
+    
 
 def editar_Producto(request,pk):
     current_user = get_object_or_404(User, pk=request.user.pk)

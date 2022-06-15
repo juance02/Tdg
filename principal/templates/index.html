@@ -1,4 +1,5 @@
 
+{% load humanize %}
 <!DOCTYPE html>
 {%load static %}
 <html lang="en">
@@ -29,6 +30,7 @@
     <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
     <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/1772/1772243.png" type="image/x-icon">
   </head>
   
   <body class="goto-here">
@@ -74,9 +76,10 @@
               </div>
             </li>
             {% if request.user.is_authenticated %}
-            <li class="nav-item"><a href="{% url 'perfil' %}" class="nav-link">Perfil</a></li>
+            
             <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Cerrar</a></li>
-            <img class="img2" src="{{ user.perfil.image.url }}" height="60px" width="60px" style="border-radius: 50% ;" >
+            <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contacto</a></li>
+            <a  href="{% url 'perfil' %}"><img src="{{ user.perfil.image.url }}" height="60px" width="60px" style="border-radius: 50% ;" ></a>
             {% else %}
 	          <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Inicio de Sesion</a></li>
 	          <li class="nav-item"><a href="{% url 'register' %}" class="nav-link">Registrate</a></li>
@@ -143,13 +146,17 @@
     	<div class="container">
         
     		<div class="row">
-      
-          {% for post in product %} 
+        {% for post in product %} 
+       
+        
+        
           
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-            
-    				<div class="product"> 
-    					<a href="{% url 'verProducto' post.user.username %}" class="img-prod"><img class="img-fluid" src="{{post.image.url}}" alt="Colorlib Template">
+          <div class="col-md-6 col-lg-3 ftco-animate">
+    				<div class="product">
+    					
+                <a href="{% url 'verProductoo' post.pk %}" class="img-prod"><img class="img-fluid" src="{{post.image.url}}" alt="Colorlib Template">
+                <br>
+    					
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
@@ -159,7 +166,7 @@
 		    						<p class="price"><span class="price-sale">${{post.precio}}</span></p>
 		    					</div>
 	    					</div>
-	    					<div class="bottom-area d-flex px-3"> 
+	    					<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
 	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
@@ -175,7 +182,8 @@
     					</div>
     				</div>
           </div>
-          {% endfor %}
+        
+        {% endfor %}
     	 </div>
       </div>
    
