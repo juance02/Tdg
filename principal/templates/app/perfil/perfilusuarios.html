@@ -21,7 +21,16 @@
 		<a  href="{{ user.perfil.image.url }}" class="image-popup"><img src="{{ user.perfil.image.url }}" class="img-fluid" alt="Colorlib Template"></a>
 		
 		<h2>@{{ user.username }}</h2>
-		
+
+		{% if request.user.is_authenticated %}
+			{% if user.username != request.user.username %}
+				{% if user not in request.user.perfil.calificacionbuena %}
+				<button><a class="follow-button" href="{% url 'calificacionbuena' user %}">Seguir</a></button>
+				{% else %}
+				<button><a class="follow-button" href="{% url 'calificacionmala' user %}">Dejar de Seguir</button>
+				{% endif %}
+			{% endif %}
+		{% endif %}
 		
 		
 	</div>
@@ -32,13 +41,13 @@
 			<p>{{ user.product.count }}</p>
 		</div>
 		<div>
-			<h5>Calificacion Buena</h5>
-			<p>0</p>
+			<h5>Seguiendo</h5>
+			<p>{{ user.perfil.calificacionbuena.count }}</p>
 	
 		</div>
 		<div>
-			<h5>Calificaciones Malas</h5>
-			<p>0</p>
+			<h5>Seguidores</h5>
+			<p>{{ user.perfil.calificacionmala.count }}</p>
 		</div>
 
 	</div>

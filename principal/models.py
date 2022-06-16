@@ -205,8 +205,16 @@ class perfil(models.Model):
 
     def  __str__(self):
          return f'Perfil de {self.user.username}'
-    
 
+    def calificacionbuena(self):
+        user_ids = calificacionesuser.objects.filter(from_user=self.user)\
+                                      .values_list('to_user_id', flat=True)
+        return User.objects.filter(id__in=user_ids)                              
+
+    def calificacionmala(self):
+        user_ids = calificacionesuser.objects.filter(to_user=self.user)\
+                                      .values_list('from_user_id', flat=True)
+        return User.objects.filter(id__in=user_ids) 
 
 class producto(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product')

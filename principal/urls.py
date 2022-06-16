@@ -38,6 +38,8 @@ urlpatterns = [
     path('cart/',views.cart, name="cart"),
     path('contactar/', views.contactar, name="contactar"),
     path('contact/', views.contact, name="contact"),
+    path('calificacionbuena/<str:username>', views.calificacionbuena, name='calificacionbuena'),
+    path('calificacionmala/<str:username>', views.calificacionmala, name='calificacionmala'),
 
  
     #path('CrearProducto/', views.CrearProducto),

@@ -18,6 +18,7 @@ from principal.models import TipoDeDocumento
 from principal.models import TipoPersona
 from principal.models import producto
 from principal.models import contacto
+from principal.models import calificacionesuser
 #from principal.models import User
 #from principal.models import UbicacionProducto
 
@@ -44,3 +45,4 @@ admin.site.register(UbicacionProducto)
 admin.site.register(TipoDeDocumento)
 admin.site.register(TipoPersona)
 admin.site.register(contacto)
+admin.site.register(calificacionesuser)

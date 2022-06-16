@@ -22,6 +22,8 @@
 		
 		<h2>@{{ user.username }}</h2>
 		
+		
+		
 		<p>¿Quieres Vender? <a class="link" href="{% url 'agregar_personas' %}"><h2>Ingresa</h2></a></p>
 		
 	</div>
@@ -32,13 +34,13 @@
 			<p>{{ user.product.count }}</p>
 		</div>
 		<div>
-			<h5>Calificacion Buena</h5>
-			<p>0</p>
+			<h5>Seguiendo</h5>
+			<p>{{ user.perfil.calificacionbuena.count }}</p>
 	
 		</div>
 		<div>
-			<h5>Calificaciones Malas</h5>
-			<p>0</p>
+			<h5>Seguidores</h5>
+			<p>{{ user.perfil.calificacionmala.count }}</p>
 		</div>
 
 	</div>

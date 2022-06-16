@@ -253,6 +253,24 @@ def contactar(request):
         return render (request,"contactoExitoso.html")
     return render(request, "contact.html")
 
+def calificacionbuena(request, username):
+    current_user = request.user
+    to_user = User.objects.get(username=username)
+    to_user_id = to_user
+    rel = calificacionesuser(from_user=current_user, to_user=to_user_id)
+    rel.save()
+    messages.success(request, f'les has dado una buena calificacion{username}')
+    return redirect ('perfil')
+
+def calificacionmala(request, username):
+    current_user = request.user
+    to_user = User.objects.get(username=username)
+    to_user_id = to_user.id
+    rel = calificacionesuser.objects.filter(from_user=current_user.id, to_user=to_user_id).get()
+    rel.delete()
+    messages.success(request, f'les has dado una mala calificacion{username}')
+    return redirect ('perfil')
+
         
 
         
