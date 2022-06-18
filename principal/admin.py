@@ -2,7 +2,8 @@ from django.contrib import admin
 from principal.models import Cabeza
 from principal.models import Comentarios
 from principal.models import Calificaciones
-from principal.models import Categoria
+#from principal.models import Categoria
+from principal.models import Categorias
 from principal.models import Cotizacion, Cuerpo
 from principal.models import Departamentos
 from principal.models import Entradas
@@ -18,7 +19,7 @@ from principal.models import TipoDeDocumento
 from principal.models import TipoPersona
 from principal.models import producto
 from principal.models import contacto
-from principal.models import calificacionesuser
+from principal.models import seguidores
 #from principal.models import User
 #from principal.models import UbicacionProducto
 
@@ -27,7 +28,8 @@ from principal.models import calificacionesuser
 
 admin.site.register (Cabeza)
 admin.site.register(Calificaciones)
-admin.site.register(Categoria)
+#admin.site.register(Categoria)
+admin.site.register(Categorias)
 admin.site.register(Comentarios)
 admin.site.register(Cotizacion)
 admin.site.register(Cuerpo)
@@ -45,4 +47,4 @@ admin.site.register(UbicacionProducto)
 admin.site.register(TipoDeDocumento)
 admin.site.register(TipoPersona)
 admin.site.register(contacto)
-admin.site.register(calificacionesuser)
+admin.site.register(seguidores)

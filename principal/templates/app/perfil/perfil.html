@@ -35,12 +35,12 @@
 		</div>
 		<div>
 			<h5>Seguiendo</h5>
-			<p>{{ user.perfil.calificacionbuena.count }}</p>
+			<p>{{ user.perfil.seguir.count }}</p>
 	
 		</div>
 		<div>
 			<h5>Seguidores</h5>
-			<p>{{ user.perfil.calificacionmala.count }}</p>
+			<p>{{ user.perfil.dejardeseguir.count }}</p>
 		</div>
 
 	</div>
@@ -50,7 +50,7 @@
 			
 			<div class="ele">
 				<h2>Descripcion</h2>
-				<p>{{ post.descripcion }}</p>
+				<p>{{ user.perfil.descripcion }}</p>
 				<h3><a href="{% url 'agregar_Perfil' %}" class="btn btn-primary py-3 px-4">Edit Perfil</a></h3>
 				<h3><a href="{% url 'agregar_producto' %}" class="btn btn-primary py-3 px-4">Agregar Producto</a></h3>
 			   </div>

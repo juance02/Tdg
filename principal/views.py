@@ -43,18 +43,21 @@ from django.contrib.auth.decorators import  login_required
 
 def Inicio(request):
     product = producto.objects.all()
-
-    context = { 'product': product}
+    categorias=Categorias.objects.filter(activo=True)
+    context = { 'product': product,'categorias':categorias}
     return render(request, "index.html", context)
 
 def  plantilla(request):
      product = producto.objects.all()
-
-     context = { 'product': product}
+     categorias=Categorias.objects.filter(activo=True)
+     context = { 'product': product, 'categorias':categorias}
      return render(request,"plantillas.html", context)
 def  indexp(request):
-    
-     return render(request,"indexp.html")
+    categorias=Categorias.objects.filter(activo=True)
+    data ={
+        'categorias':categorias
+    } 
+    return render(request,"indexp.html", data)
 
 #def contactar(request):
     #if request.method == "POST":
@@ -145,8 +148,6 @@ def editar_Perfil(request):
     return render(request, 'app/perfil/crearPerfil.html', context)
     
 
-def Categoria(request):
-    return render(request, "Categoria.html")
 
 
 def perfil(request, username=None):
@@ -216,8 +217,9 @@ def  verProducto(request, username=None):
 
 def  verProductoo(request, pk):
     productos = producto.objects.filter(pk=pk)
+    categorias=Categorias.objects.filter(activo=True)
     data ={
-        'productos': productos
+        'productos': productos, 'categorias':categorias
     } 
     return render(request, 'vistas12.html', data)
     
@@ -253,23 +255,57 @@ def contactar(request):
         return render (request,"contactoExitoso.html")
     return render(request, "contact.html")
 
-def calificacionbuena(request, username):
+def seguir(request, username):
     current_user = request.user
     to_user = User.objects.get(username=username)
     to_user_id = to_user
-    rel = calificacionesuser(from_user=current_user, to_user=to_user_id)
+    rel = seguidores(from_user=current_user, to_user=to_user_id)
     rel.save()
-    messages.success(request, f'les has dado una buena calificacion{username}')
+    messages.success(request, f'Has Comenzado a Seguir {username}')
     return redirect ('perfil')
 
-def calificacionmala(request, username):
+def dejardeseguir(request, username):
     current_user = request.user
     to_user = User.objects.get(username=username)
     to_user_id = to_user.id
-    rel = calificacionesuser.objects.filter(from_user=current_user.id, to_user=to_user_id).get()
+    rel = seguidores.objects.filter(from_user=current_user.id, to_user=to_user_id).get()
     rel.delete()
-    messages.success(request, f'les has dado una mala calificacion{username}')
+    messages.success(request, f'Dejaste de Seguir {username}')
     return redirect ('perfil')
+
+#Categorias de los productos 
+
+def detallecategoria(request, slug):
+
+    cat=Categorias.objects.get(slug=slug)
+    categorias=Categorias.objects.filter(activo=True)
+    productos=producto.objects.filter(activo=True,categorias=cat)
+    context = {"productos":productos, "categorias":categorias}
+    return render(request,'Categoria.html',context)
+
+def Frutas(request):
+    return render(request, 'categoria/Frutas.html')
+
+def Carnes(request):
+    return render(request, "categoria/Carnes.html")
+
+def Granos(request):
+    return render(request, "categoria/Granos.html")
+
+def Lacteos(request):
+    return render(request, "categoria/Lacteos.html")
+
+def Verduras(request):
+    return render(request, "categoria/Verduras.html")
+
+def buscador (request):
+    q=request.GET["q"]
+    productos=producto.objects.filter(activo=True,nombre__icontains=q)
+    #Perfil = perfil.objects.filter(activo=True,nombre__icontains=q)
+    categorias = Categorias.objects.filter(activo=True)
+    context = {'productos':productos, 'categorias':categorias}
+    return render(request, 'Categoria.html' , context)
+
 
         
 

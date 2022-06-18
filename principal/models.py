@@ -7,9 +7,12 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from distutils.command import upload
 from email.policy import default
+from tabnanny import verbose
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
+from autoslug import AutoSlugField
+
 
 class Cabeza(models.Model):
     idcabeza = models.AutoField(primary_key=True)
@@ -27,30 +30,41 @@ class Calificaciones(models.Model):
         managed = False
         db_table = 'calificaciones'
 
-class calificacionesuser(models.Model):
-    from_user = models.ForeignKey(User, related_name='califi', on_delete=models.CASCADE)
-    to_user = models.ForeignKey(User, related_name='califi_to', on_delete=models.CASCADE)
 
-    def __str__(self):
-        return f'{self.from_user} to {self.to_user} '
-    
-    class Meta:
-        indexes = [
-        models.Index(fields=['from_user', 'to_user',]),
-        ]
 
 
 
 class Categoria(models.Model):
-    idcategoria = models.AutoField(db_column='idCategoria', primary_key=True)  # Field name made lowercase.
+    idcategoria = models.AutoField(primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(max_length=45)
+    #slug = AutoSlugField(populate_from='nombre')
     descripcion = models.TextField()
-    imageulr = models.ImageField(blank=True, null=True)
-    categoriaid = models.IntegerField(blank=True, null=True)
-
+    image = models.ImageField(blank=True, null=True)
+    #activo=models.BooleanField(default=True)
+    #categoriaid = models.IntegerField(blank=True, null=True)
+    
     class Meta:
         managed = False
         db_table = 'categoria'
+        verbose_name = 'categoria'
+        verbose_name_plural = 'Categorias'
+
+    def __str__(self):
+        return self.nombre
+
+class Categorias(models.Model):
+    nombre = models.CharField(max_length=45)
+    slug = AutoSlugField(populate_from='nombre')
+    descripcion = models.TextField()
+    image = models.ImageField(blank=True, null=True)
+    activo=models.BooleanField(default=True)
+
+    def __str__(self) -> str:
+        return self.nombre
+
+    class Meta:
+        verbose_name_plural='Categoria'
+
 
 
 class Comentarios(models.Model):
@@ -165,6 +179,19 @@ class Subcategoria(models.Model):
         managed = False
         db_table = 'subcategoria'
 
+class seguidores(models.Model):
+    from_user = models.ForeignKey(User, related_name='califi', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(User, related_name='califi_to', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.from_user} to {self.to_user} '
+    
+    class Meta:
+        indexes = [
+        models.Index(fields=['from_user', 'to_user',]),
+        ]
+
+
 
 class TipoDeDocumento(models.Model):
     idtipo_de_documento = models.AutoField(primary_key=True)  # Field name made lowercase.
@@ -206,31 +233,47 @@ class perfil(models.Model):
     def  __str__(self):
          return f'Perfil de {self.user.username}'
 
-    def calificacionbuena(self):
-        user_ids = calificacionesuser.objects.filter(from_user=self.user)\
+    def seguir(self):
+        user_ids = seguidores.objects.filter(from_user=self.user)\
                                       .values_list('to_user_id', flat=True)
         return User.objects.filter(id__in=user_ids)                              
 
-    def calificacionmala(self):
-        user_ids = calificacionesuser.objects.filter(to_user=self.user)\
+    def dejardeseguir(self):
+        user_ids = seguidores.objects.filter(to_user=self.user)\
                                       .values_list('from_user_id', flat=True)
         return User.objects.filter(id__in=user_ids) 
 
 class producto(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product')
     nombre = models.CharField(max_length=50)
+    slug=AutoSlugField(populate_from='nombre')
+    categorias = models.ForeignKey(Categorias,on_delete=models.CASCADE, related_name='productoscat')
     precio = models.FloatField()  # Field name made lowercase.
-    #Informacion_de_produccion = models.CharField(max_length=100)
+    Informacion_de_produccion = models.CharField(max_length=100)
     image = models.ImageField(upload_to="productos/",null=True,blank=True)  # Field name made lowercase.
     timestamp = models.DateTimeField(default=timezone.now)
     descripcion = models.TextField()
+    destacado=models.BooleanField(default=True)
+    activo=models.BooleanField(default=True)
     
 
     class Meta:
         ordering = ['-timestamp']
+        verbose_name = 'Producto'
+        verbose_name_plural = 'Productos'
+        ordering = ['-id']
 
     def  __str__(self):
          return f'{self.user.username}: {self.descripcion}'
+    def  __str__(self):
+         return self.nombre
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
 
 class Personas(models.Model):
     id_personas = models.AutoField(primary_key=True)

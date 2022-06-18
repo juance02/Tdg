@@ -24,10 +24,10 @@
 
 		{% if request.user.is_authenticated %}
 			{% if user.username != request.user.username %}
-				{% if user not in request.user.perfil.calificacionbuena %}
-				<button><a class="follow-button" href="{% url 'calificacionbuena' user %}">Seguir</a></button>
+				{% if user not in request.user.perfil.seguir %}
+				<button><a class="follow-button" href="{% url 'seguir' user %}">Seguir</a></button>
 				{% else %}
-				<button><a class="follow-button" href="{% url 'calificacionmala' user %}">Dejar de Seguir</button>
+				<button><a class="follow-button" href="{% url 'dejardeseguir' user %}">Dejar de Seguir</button>
 				{% endif %}
 			{% endif %}
 		{% endif %}
@@ -42,12 +42,12 @@
 		</div>
 		<div>
 			<h5>Seguiendo</h5>
-			<p>{{ user.perfil.calificacionbuena.count }}</p>
+			<p>{{ user.perfil.seguir.count }}</p>
 	
 		</div>
 		<div>
 			<h5>Seguidores</h5>
-			<p>{{ user.perfil.calificacionmala.count }}</p>
+			<p>{{ user.perfil.dejardeseguir.count }}</p>
 		</div>
 
 	</div>
@@ -57,7 +57,7 @@
 			
 			<div class="ele">
 				<h2>Descripcion</h2>
-				<p>{{ user.descripcion }}</p>
+				<p>{{ user.perfil.descripcion }}</p>
 				
 			   </div>
 			   

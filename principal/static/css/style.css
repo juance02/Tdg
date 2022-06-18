@@ -8028,7 +8028,7 @@ a {
 
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
-  line-height: 1.5;
+  line-height: 4.5;
   font-weight: 400;
   color: #000000;
   font-family: "Poppins", Arial, sans-serif; }
@@ -10025,4 +10025,21 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+    .notification {
+      text-align: center;
+      padding: 10px 20px;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+    .success {
+      background: #43DC7E;
+      color: white;
+    }
+    .error {
+      background: #AB3444;
+      color: white;
+      margin-bottom: 20px;
+    }
 
