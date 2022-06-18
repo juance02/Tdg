@@ -53,11 +53,8 @@ def  plantilla(request):
      context = { 'product': product, 'categorias':categorias}
      return render(request,"plantillas.html", context)
 def  indexp(request):
-    categorias=Categorias.objects.filter(activo=True)
-    data ={
-        'categorias':categorias
-    } 
-    return render(request,"indexp.html", data)
+    
+    return render(request,"indexp.html")
 
 #def contactar(request):
     #if request.method == "POST":
