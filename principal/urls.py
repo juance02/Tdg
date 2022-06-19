@@ -13,6 +13,7 @@ from principal.views import *
 urlpatterns = [
     path('', views.Inicio, name="Form"),
     path('plantilla/', views.plantilla, name="plantilla"),
+    path('plantillas/', views.plantillas, name="plantillas"),
     path('indexp/', views.indexp, name="indexp"),
     #path('contactar/', views.contactar,name="contactar"),
     #path('', include('django.contrib.auth.urls')),
@@ -33,8 +34,8 @@ urlpatterns = [
     path('contacto/<str:username>/', views.contacto, name="contacto"),
     path('verProducto/', views.verProducto, name='verProducto'),
     path('verProducto/<str:username>/', views.verProducto, name='verProducto'),
+    path('verProductos/<str:username>/', views.verProductos, name='verProductos'),
     path('verProductoo/<int:pk>/', views.verProductoo, name='verProductoo'),
-    path('editar_Producto/<int:pk>/', views.editar_Producto, name="editar_Producto"),
     path('cart/',views.cart, name="cart"),
     path('contactar/', views.contactar, name="contactar"),
     path('contact/', views.contact, name="contact"),

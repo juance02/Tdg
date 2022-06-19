@@ -75,7 +75,7 @@
             
             <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Cerrar</a></li>
             <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contacto</a></li>
-			<a  href="{% url 'perfil' %}"><img src="{{ user.perfil.image.url }}" height="60px" width="60px" style="border-radius: 50% ;" ></a>
+			
             {% else %}
 	          <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Inicio de Sesion</a></li>
 	          <li class="nav-item"><a href="{% url 'register' %}" class="nav-link">Registrate</a></li>
@@ -128,7 +128,7 @@
 							
 	          	<div class="w-100"></div>
 	          	<div class="col-md-12">
-	          		<p style="color: #000;">600 kg Disponibles</p>
+	          		<p style="color: #000;">{{post.Informacion_de_produccion}}</p>
 					  
 					<h2 class="username"><a href="{% url 'perfilusu' post.user.username %}">{{ post.user.username }}</a></h2>
 	          	</div>

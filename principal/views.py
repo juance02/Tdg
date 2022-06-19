@@ -52,6 +52,13 @@ def  plantilla(request):
      categorias=Categorias.objects.filter(activo=True)
      context = { 'product': product, 'categorias':categorias}
      return render(request,"plantillas.html", context)
+
+def  plantillas(request):
+     product = producto.objects.all()
+     categorias=Categorias.objects.filter(activo=True)
+     context = { 'product': product, 'categorias':categorias}
+     return render(request,"plantilla.html", context)
+
 def  indexp(request):
     
     return render(request,"indexp.html")
@@ -118,7 +125,7 @@ def modificar_producto(request,pk):
         formulario = ProductoForm(data=request.POST, instance=Producto, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            return redirect(to="listar_productos")
+            return redirect(to="perfil")
         data["form"] = formulario    
     return render(request, 'app/producto/modificar.html', data)
 
@@ -212,6 +219,17 @@ def  verProducto(request, username=None):
         user = current_user
     return render(request, 'app/producto/product-single.html',{'user':user, 'product':product})
 
+def  verProductos(request, username=None):
+    current_user = request.user
+    if username and username !=current_user.username:
+        user = User.objects.get(username=username)
+        product = user.product.all()
+
+    else:
+        product = current_user.product.all()
+        user = current_user
+    return render(request, 'app/producto/verproducto.html',{'user':user, 'product':product})
+
 def  verProductoo(request, pk):
     productos = producto.objects.filter(pk=pk)
     categorias=Categorias.objects.filter(activo=True)
@@ -219,21 +237,6 @@ def  verProductoo(request, pk):
         'productos': productos, 'categorias':categorias
     } 
     return render(request, 'vistas12.html', data)
-    
-
-def editar_Producto(request,pk):
-    current_user = get_object_or_404(User, pk=request.user.pk)
-
-    
-    if request.method == 'POST':
-        formulario = ProductoForm(data=request.POST, instance=producto, files=request.FILES)
-        if formulario.is_valid():
-            producto.formulario.save(commit=False)
-            producto.user = current_user
-            return redirect(to="listar_productos")
-           
-    return render(request, 'app/producto/editarproducto.html', )
-
      
 def cart(request):
     return render (request,"cart.html") 

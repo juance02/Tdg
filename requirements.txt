@@ -1,6 +1,11 @@
 django == 4.0.4
 pillow
 django-admin-interface
+mysqlclient
+django-autoslug
+django-Bootstrap4
+django-widget-tweaks
+django-crispy-forms
 
 
 

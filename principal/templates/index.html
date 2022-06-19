@@ -85,7 +85,7 @@
             {% if request.user.is_authenticated %}
             
             <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Cerrar</a></li>
-            <li class="nav-item cta cta-colored"><a href="{% url 'cart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+            
             <a  href="{% url 'perfil' %}"><img src="{{ user.perfil.image.url }}" height="60px" width="60px" style="border-radius: 50% ;" ></a>
             {% else %}
 	          <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Inicio de Sesion</a></li>
@@ -114,7 +114,7 @@
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
 	            <div class="col-md-12 ftco-animate text-center">
-	              <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
+	              <h1 class="mb-2">Productos de la mejor Calidad </h1>
 	              <h2 class="subheading mb-4">Productos 100% colombianos &amp; fruits</h2>
 	              <p><a href="#" class="btn btn-primary">Ver Detalles</a></p>
 	            </div>
@@ -123,14 +123,14 @@
 	        </div>
 	      </div>
 
-	      <div class="slider-item" img = "/static/images/vegetal.jpg">
+	      <div class="img js-fullheight" style="background-image: url({% static 'images/image_5.jpg' %});">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
 	            <div class="col-sm-12 ftco-animate text-center">
-	              <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
-	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
+	              <h1 class="mb-2">100% Frescos &amp; De la Mejor Calidad</h1>
+	              <h2 class="subheading mb-4">Entregamos verduras ecológicas &amp; Frutas</h2>
 	              <p><a href="#" class="btn btn-primary">Ver Detalles</a></p>
 	            </div>
 
